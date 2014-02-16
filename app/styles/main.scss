@@ -67,6 +67,16 @@ body {
     margin-top: 28px;
 }
 
+.img-small {
+    width: 200px;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {

@@ -4,7 +4,8 @@ angular.module('ultraApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'hc.marked'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -24,6 +25,10 @@ angular.module('ultraApp', [
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
         authenticate: true
+      })
+      .when('/projects', {
+        templateUrl: 'partials/project_index',
+        controller: 'ProjectCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -55,4 +60,9 @@ angular.module('ultraApp', [
         $location.path('/login');
       }
     });
+
+    $rootScope.goTo = function(path) {
+      $location.path(path);
+    };
+
   });
