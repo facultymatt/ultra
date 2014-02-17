@@ -2,131 +2,39 @@
   <h1>Design and develop!</h1>
 </div> -->
 
+<!-- <div class="row">
+  <div class="col-xs-12 ">
+    <div ng-repeat="item in tags | orderBy:'count':true ">
+        {{item.tag}}, {{item.count}}
+    </div>
+  </div>
+</div>
+ -->
+
 <div class="row">
   <div class="col-xs-12 select-history">
 
     <h2>Select Timeline</h2>
 
-    <h4>2014</h4>
+    <input type="text" class="form-control" ng-model="filterTerm" />
 
-    <h5>Competed in LEGOLand Discovery Center's Brick Factor</h5>
-    <p>Placed in the top 10, and while I didn't get the job, I did get the experience of a lifetime!</p>
+    <div ng-repeat="year in years | orderBy:'year':true ">
 
-    <hr />
+      <h4>{{year.year}}</h4>
+      
+      <div 
+       ng-show="filterTerm === '' || item.match == true" 
+       ng-repeat="item in year.items">
+        <h5>{{item.title}}</h5>
+        <p>{{item.desc}}</p>
+      </div>
 
-    <h4>2013</h4>
+      <hr ng-if="!$last" />
 
-    <h5>LeaseRep, powered by MarlinApps</h5>
-    <p>Worked with Marlin Leasing, a fortune 500 company, to bring to life a new vision for their qutoing and applications tools. We developed a platform using a modern stack.</p>
-
-    <h5>CrocktoberFest Voting App</h5>
-    <p>Co-developed angularJS voting app using FireBase to provide real-time backend. App allowed multiple judges to vote for multiple contestants.</p>  
-
-    <h5>BizVizz: Corporate Accountability App</h5>
-    <p>Early user experience and API / web development to support this award winning app.</p>
-
-    <h5>My Favorite Meme</h5>
-    <p>Real time instagram API app that let users contribute their favorite meme</p>
-
-    <h5>Town of Songs 2</h5>
-    <p>Developed new version of the experience for the new release!</p>
-
-    <hr />
-
-    <h4>2012</h4>
-
-    <h5>BDDW</h5>
-    <p>Website for furniture site. Developed multiple jQuery plugins to make it happen.</p>
-
-    <h5>Town of Songs 1</h5>
-    <p>Developed HTML5 interactive experience for the band's new album. Used Construct 2 to develop the game.</p>
-
-    <h5>Blank You Very Much</h5>
-    <p>Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. <a href="http://www.blankyouverymuch.com/">blankyouverymuch.com</a></p>
-
-    <h5>Poasty API</h5>
-    <p>Develop realtime, instagram-like API for sharing photos and posts.</p>
-
-    <h5>Poasty Gamify</h5>
-    <p>Developed activity stream class modeled after research into Facebook and Etsy activity feed design patterns.</p>
-    <p>Developed gamify class that awards badges based on number of actions, certain action combinations, and other configurations.</p> 
-
-    <hr />
-
-    <h4>2011</h4>
-
-    <h5>Faculty Kinect</h5>
-    <p>Distorted company logo thorough Kinect user interactions.</p>
-
-    <h5>Started Work at Faculty Creative</h5>
-    <p>Toymakers of digital products and platforms</p>
-
-    <h5>The Tech Virtual, San Jose, CA : PIXEL Installation and Public Gallery Installation</h5>
-    <p>Presented and had exhibit installed with collegue at musuem</p>
-
-    <h5>mmWorks (personal website from 2010-2014)</h5>
-    <p>My personal website for a few years</p>
-
-    <h5>Masters of Industrial Design</h5>
-    <p>Graduated with a degree in human centered design. Thesis here! Thinkering!</p>
-
-    <h5>Thinkering Stories (Fleisher Art Class)</h5>
-    <p>Developed OpenframeWorks app that used FERN tracking to connect drawings to stories.</p> 
-
-    <h5>Started Teaching Gadgets and Kinetics</h5>
-    <p>Working with Fleisher Art Memorial, MID@UArts, and The Hacktory, and collegue Jake Well, started an after school class for children ages 8-10 years old. We created many projects designed to cultivate systematic creativity.</p> 
-
-    <hr />
-
-    <h4>2010</h4>
-
-    <h5>LEGO Workshop</h5>
-    <p>Researching for my thesis, I explored the LEGO digital designer and decided to make my graduate fab shop a reality. If we can get kids building these new manufacturing machines, they will begin to understand how they work.</p>
-
-    <h5>Museums and the Web Conference; Eye Tracking With Your MacBook</h5>
-    <p>Hacking against eye tracking software for your macbook laptop</p>
-
-    <h5>MID@Uarts Website</h5>
-    <p>Developed website for graduate program (summer)</p>
-    
-    <h5>Air Cooperation</h5>
-    <p>Design charrette where i worked with a team of grad and undergrad to design a musical collaboration tool.</p> 
-    
-    <hr /> 
-
-    <h4>2009</h4> 
-
-    <h5>RantCloud</h5>
-    <p>Baltimore hackathon entry with colleges Jake and Mike. Used a speech to text service to capture users voice mail responses to a question we asked.</p>
-    
-    <h5>Cheers, Philly</h5>
-    <p>Website to promote local consumption of local beer!</p>
-
-    <h5>Collaboration: A Love Story</h5>
-    <p>A play to investigate collaboration in our school</p> 
-
-    <h5>Open-Source Eye Tracking Research</h5>
-    <p>Started Hacking the Eye Writer and OpenFrameWorks software</p>
-
-    <h5>StudioNEXT</h5>
-    <p>A look at design education of the future!</p>
-
-    <hr /> 
-
-    <h4>2008</h4>
-
-    <h5>ResourceLA site</h5>
-    <p>Website for Los Angelus based talent agency. Collaboration with Cheng+Snyder.</p>
-
-    <h5>Smithville Barber Shoppe</h5>
-    <p>Great website for great client.</p>
-
-    <h5>A Cut Above</h5>
-    <p>Final project for my undergraduate design degree.</p>
+    </div>
 
   </div>
 </div>
-
 
 
 <div class="footer">
