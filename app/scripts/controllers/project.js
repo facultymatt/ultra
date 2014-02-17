@@ -3,6 +3,10 @@
 angular.module('ultraApp')
   .config(function($routeProvider) {
     $routeProvider
+      .when('/projects/tactile-touch', {
+        templateUrl: 'partials/projects/tactile_touch.html',
+        controller: 'ProjectCtrl'
+      })
       .when('/projects/rant-cloud', {
         templateUrl: 'partials/projects/rant_cloud.html',
         controller: 'ProjectCtrl'

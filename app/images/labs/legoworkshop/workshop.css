@@ -1,0 +1,235 @@
+/* CSS Resets */
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,q,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0}article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,video,object{display:block}a img{border:0}figure{position:relative}figure img{width:100%}
+
+body {
+	font-family: freight-sans-pro,sans-serif;
+}
+
+h1, h2, h3, h4, .welcome {
+	font-family: freight-sans-pro,sans-serif;
+}
+
+h2 {
+	
+	font-size: 4em;
+	line-height: 0.8em;
+	
+  	font-weight: 900;
+  	background-color: white;
+  	color: #f6891f;
+  	margin-bottom: 0.3em;
+  	text-shadow:
+	    0 1px #5c5c5c,
+	    
+	    -1px 0 #b4b4b4, 
+	    -1px 2px #5c5c5c,
+	    
+	    -2px 1px #b4b4b4,
+	    -2px 3px #5c5c5c,
+	    
+	    -3px 2px #b4b4b4,
+	    -3px 4px #5c5c5c;
+}
+
+
+.announcement {
+	font-size: 2em;
+	line-height: 1em;
+  	font-weight: 600;
+  	font-style: italic;
+  	color: #5c5c5c;
+  	margin-left: 40px;
+}
+
+p.buyinfo {
+	margin-bottom: -40px;
+	margin-left: 40px;
+	color: #5c5c5c;
+	font-style: italic;
+	font-size: 0.9em;
+	position: relative;
+}
+
+.download {
+	margin-left: 140px;
+}
+
+#items {
+	margin-left: ;
+}
+
+#items div {
+	margin-bottom: -25px;
+}
+
+
+h4 {
+	
+	font-size: 2em;
+  	
+  	
+  	margin-top: -60px;
+  	margin-left: 60px;
+  	
+  	font-size: 2em;
+	line-height: 1em;
+  	font-weight: 900;
+  	color: #f6891f;
+  	text-shadow:
+	    0 1px #5c5c5c,
+	    
+	    -1px 0 #b4b4b4, 
+	    -1px 2px #5c5c5c,
+	    
+	    -2px 1px #b4b4b4,
+	    -2px 3px #5c5c5c;
+}
+
+h5 {
+	color: #f6891f;
+	font-size: 1.2em;
+	
+}
+
+area {
+	outline: 2px solid #f6891f;
+} 
+
+
+
+h3 {
+ font-size: 1.5em;
+ 
+ 	
+}
+
+p {
+	font-family: freight-sans-pro,sans-serif;
+	font-size: 1em;
+	margin-bottom: 1.5em;
+}
+
+.sixcol {width: 48%; float: left;}
+.row {width: auto;}
+
+p.intro {
+	font-family: freight-sans-pro,sans-serif;
+	font-size: 1.5em;
+	margin-bottom: 13px;
+	
+}
+
+p.welcome {
+	font-size: 2em;
+  	font-weight: 600;
+  	font-style: italic;
+  	margin-bottom: -0.1em;
+  	color: #5c5c5c;
+  	margin-top: .5em;
+  	
+}
+
+
+
+/* Map tooltip */
+.more_info {
+	background: white;
+	border: 1px dashed #5c5c5c;
+	width: 150px;
+	position: absolute;
+	font-family: "Arial", Sans-serif;
+	font-size: 0.9em;
+	padding: 10px;
+	z-index: 1;
+	
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px; 
+	
+	-moz-box-shadow: 2px 2px 3px #333333;
+  	-webkit-box-shadow: 2px 2px 3px #333333;
+  	box-shadow: 2px 2px 3px #333333;
+  	
+  	box-shadow: 0px 0px 4px #5c5c5c;
+}
+
+.more_info p {
+	margin-bottom: 0;
+}
+
+
+/* Wraps entire shop image and text */
+.container {
+	z-index: 1000;
+	position: relative;
+}
+
+#theshop_wrapper { margin-top: -100px; float: left;}
+
+#map_workshop { position: relative; }
+
+#theshop {
+	position: relative;
+	z-index: 0;
+	margin-bottom: 50px;
+}
+
+/* Wraps only the text */
+.content_wrapper { max-width: 960px; }
+
+
+
+/* Placement of individual shop hover items */
+#i_materialcart { top: 210px; left: 500px; display: none;}
+#i_3dprinter { top: 70px; left: 660px; display: none;}
+#i_lasercutter { top: 70px; left: 520px; display: none; }
+#i_materialrack { top: 60px; left: 600px; display: none; }
+#i_mitersaw { top: 120px; left: 430px; display: none; }
+#i_tablesaw { top: 240px; left: 570px; display: none; }
+#i_planer { top: 240px; left: 280px; display: none; }
+#i_sander { top: 120px; left: 230px; display: none;}
+#i_drillpress { top: 100px; left: 140px; display: none; }
+#i_matt { top: 190px; left: 350px; display: none; }
+
+
+
+
+
+a[rel ="external"] {
+		background: url(../../img/external_link_icon.gif) right 6px no-repeat;
+		padding-right: 14px;
+		margin-right: 2px;
+		color: black;
+		font-style: italic;
+		
+	}
+	
+a[rel ="external"]:hover {
+		background-color: yellow;
+	}	
+	
+	
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+	.announcement { margin-left: 0; margin-top: 50px; }
+	#theshop_wrapper { margin-top: 0; }
+	p.buyinfo { margin-left: 0; }
+	ul li { list-style: none; list-style-image: none; }
+	#theshop { margin-bottom: 25px; }
+	.sixcol { width: 100%;  }
+	.sixcol p {	padding-left: 20px; padding-right: 20px; }
+
+
+}
+	
+	
+
+	
+
+	
+
+	

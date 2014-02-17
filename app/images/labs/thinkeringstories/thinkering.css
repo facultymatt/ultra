@@ -1,0 +1,159 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+	body {
+		
+		color: black;
+		font-family: "Arial", Sans-serif;
+		font-size: 1em;
+		line-height: 1.5em;	
+		background: white;	
+	}
+	
+	p.caption {
+		font-size: .8em;
+		line-height: 1.1em;	
+		font-style: italic;
+		color: black;
+		color: #6CCFF5;
+		margin-bottom: 2em;
+	}
+	
+	p {
+		margin-bottom: 1em;
+	}
+	
+	
+	h1 {
+		margin-top: 0.8em;
+		color: #ED1C24;
+	}
+	
+	h2 {
+		margin-top: 0.4em;		
+		font-size: 1.3em;
+		line-height: 1.3em;
+		font-weight: 100;
+	}
+	
+	h3 {
+	}
+	
+	ol {
+		padding-left: 40px;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		
+	}
+	
+	ol li {
+		list-style-type: decimal;
+		font-style: italic;
+		
+	
+	}
+	
+	#load_slideshow {
+		position: relative;
+	}
+	
+	
+	
+	/*
+	//	Thanks to http://blog.kiskolabs.com/post/5602656614/responsive-jquery-slideshow
+	//  for helping me figure out the javascript and css to make this work
+	*/	
+	
+	.wrapper {
+		position: relative;
+	}
+	
+	#m_frame {
+		position: absolute;
+		top: 0;
+	    left: 9%;
+	    width: 82%;
+	    
+	    /* 5, 90 */
+		z-index: 1000;
+		max-width: 1140px;
+	}
+	
+	#process {
+		/* margin-top: 55%; */
+		margin-top: 50%;
+		z-index: 2000;
+	}
+	
+	#m_images {
+		width: 100%;
+    	position: relative;
+	}
+	
+	#m_images img {
+		top: 0;
+	    left: 9%;
+	    width: 82%;
+	    max-width: 1140px;
+	    height: auto;
+	    position: absolute;
+	    
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+		
+	}
+	
+	#m_frame {
+	    left: 0;
+		z-index: 1000;
+		width: 100%;		
+	}
+	
+	#m_images {
+		width: 100%;
+    	position: relative;
+	}
+	
+	#m_images img {
+	    left: 0;
+	    width: 100%;
+	}
+	
+	#process {
+		/* margin-top: 63%; */
+		margin-top: 62%;
+	}
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}

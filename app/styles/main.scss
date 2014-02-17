@@ -2,6 +2,8 @@ $icon-font-path: "/bower_components/bootstrap-sass/fonts/";
 
 @import 'bootstrap-sass/lib/bootstrap';
 
+@import 'variables';
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -75,6 +77,13 @@ body {
 [data-ng-click],
 [x-ng-click] {
     cursor: pointer;
+}
+
+.select-history {
+    h5 {
+        margin-bottom: 2px;
+        color: #E07F2F;
+    }
 }
 
 /* Responsive: Portrait tablets and up */
