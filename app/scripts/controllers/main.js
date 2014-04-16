@@ -9,8 +9,8 @@ angular.module('ultraApp')
     // we need some better colors!
     var colorArray = ['#ffa500', '#c80032', '#0000ff', '#6464ff'];
     $scope.colorFunction = function() {
-      return function(d, i) {
-        return colorArray[i];
+      return function() {
+        return colorArray[1];
       };
     };
     $scope.xFunction = function() {
@@ -39,10 +39,13 @@ angular.module('ultraApp')
 
     $scope.viewTags = ['openframeworks', 'angularjs', 'game'];
     $scope.$watch('allData', function(newValue) {
-      $scope.exampleData = _.filter(newValue, function(item) {
-        console.log($scope.viewTags.indexOf(item.key.toLowerCase()));
-        return $scope.viewTags.indexOf(item.key.toLowerCase()) !== -1;
-      });
+      // $scope.exampleData = _.filter(newValue, function(item) {
+      //   console.log($scope.viewTags.indexOf(item.key.toLowerCase()));
+      //   return $scope.viewTags.indexOf(item.key.toLowerCase()) !== -1;
+      // });
+
+      $scope.exampleData = newValue;
+
     });
 
     // tag filtering
