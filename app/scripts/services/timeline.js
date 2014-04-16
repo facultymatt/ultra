@@ -191,6 +191,10 @@ angular
     // Liberty resources? 
     // Info graphics galore! 
 
+    // get array of years
+    // get all tags
+
+
     return {
       groupItemsByYear: function(selectItems) {
         var grouped = _.groupBy(selectItems, 'year');
@@ -202,28 +206,35 @@ angular
         });
       },
       getTagsWithYearlyCount: function() {
+
+        var years = [2009, 2010, 2011, 2012, 2013, 2014];
         
         var mapped = _.reduce(items, function(result, item, key) {
           _.each(item.tags, function(tag) {
             if (!result[tag]) result[tag] = [];
-            result[tag].push({
-              y: item.year,
-              x: 1
-            });
-            //if (!result[tag][item.year]) result[tag][item.year] = 0;
-            //result[tag][item.year] = result[tag][item.year] + 1;
+            result[tag].push(item.year);
           });
           return result;
         }, {});
 
+        function countByYear(items, year) {
+          var count = _.countBy(items, function(i) {
+            return i == year;
+          });
+          return count.true || 0;
+        }
+
         var returnData = _.map(mapped, function(item, key) {
           return {
             "key": key,
-            "values": item
+            "values": _.map(years, function(year) {
+              return {
+                x: year, 
+                y: countByYear(item, year)
+              }
+            })
           }
         });
-
-        console.log(returnData);
 
         return returnData;
 
