@@ -4,16 +4,18 @@
 
 <div class="row">
   <div class="col-xs-12 ">
-    <nvd3-stacked-area-chart
+    <nvd3-line-chart
         data="exampleData"
         x="xFunction()"
         y="yFunction()"
         showXAxis="true"
-        showYAxis="true"
+        showYAxis="false"
         tooltips="true"
-        height="500"
+        interpolate="basis"
+        height="300"
         useInteractiveGuideLine="true"
-        showLegend="false"
+        showLegend="true"
+        color="colorFunction()"
         legendColor="colorFunction()">
     </nvd3-line-chart>
   </div>

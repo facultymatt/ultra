@@ -143,7 +143,7 @@ angular
       desc: "Developed website for graduate program (summer)"
     }, {
       year: 2009,
-      tags: ['hackathon', 'design', 'develop', 'collaboration'],
+      tags: ['hackathon', 'design', 'develop', 'collaboration', 'processing', 'drupal'],
       title: "RantCloud",
       desc: "Baltimore hackathon entry with colleges Jake and Mike. Used a speech to text service to capture users voice mail responses to a question we asked."
     }, {
@@ -158,7 +158,7 @@ angular
       desc: "A play to investigate collaboration in our school"
     }, {
       year: 2009,
-      tags: ['research', 'open-source', 'collaboration'],
+      tags: ['research', 'open-source', 'collaboration', 'openFrameworks'],
       title: "Open-Source Eye Tracking Research",
       desc: "Started Hacking the Eye Writer and OpenFrameWorks software"
     }, {
@@ -191,11 +191,48 @@ angular
     // Liberty resources? 
     // Info graphics galore! 
 
-    // get array of years
-    // get all tags
-
-
     return {
+      // specific data format for d3 timeline
+      // gets each tag, with a count of the tag
+      // occurrences counted for each year. 
+      getTagsWithYearlyCount: function() {
+
+        // get all years by plucking unique year props
+        // from our timeline items. Should be sorted already 
+        // but just in case
+        var years = _.unique(_.pluck(items, 'year')).sort();
+
+        var mapped = _.reduce(items, function(result, item) {
+          _.each(item.tags, function(tag) {
+            result[tag] = result[tag] || [];
+            result[tag].push(item.year);
+          });
+          return result;
+        }, {});
+
+        function countByYear(items, year) {
+          var count = _.countBy(items, function(i) {
+            return i === year;
+          });
+          return count.true || 0; // lodash count returns true and false counts
+        }
+
+        var returnData = _.map(mapped, function(item, key) {
+          var xAndYValues = _.map(years, function(year) {
+            return {
+              x: year,
+              y: countByYear(item, year)
+            };
+          });
+          return {
+            "key": key,
+            "values": xAndYValues
+          };
+        });
+
+        return returnData;
+
+      },
       groupItemsByYear: function(selectItems) {
         var grouped = _.groupBy(selectItems, 'year');
         return _.map(grouped, function(items, key) {
@@ -204,40 +241,6 @@ angular
             items: items
           };
         });
-      },
-      getTagsWithYearlyCount: function() {
-
-        var years = [2009, 2010, 2011, 2012, 2013, 2014];
-        
-        var mapped = _.reduce(items, function(result, item, key) {
-          _.each(item.tags, function(tag) {
-            if (!result[tag]) result[tag] = [];
-            result[tag].push(item.year);
-          });
-          return result;
-        }, {});
-
-        function countByYear(items, year) {
-          var count = _.countBy(items, function(i) {
-            return i == year;
-          });
-          return count.true || 0;
-        }
-
-        var returnData = _.map(mapped, function(item, key) {
-          return {
-            "key": key,
-            "values": _.map(years, function(year) {
-              return {
-                x: year, 
-                y: countByYear(item, year)
-              }
-            })
-          }
-        });
-
-        return returnData;
-
       },
       getAllItemsGroupedByYear: function() {
         return this.groupItemsByYear(items);
