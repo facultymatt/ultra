@@ -201,6 +201,33 @@ angular
           };
         });
       },
+      getTagsWithYearlyCount: function() {
+        
+        var mapped = _.reduce(items, function(result, item, key) {
+          _.each(item.tags, function(tag) {
+            if (!result[tag]) result[tag] = [];
+            result[tag].push({
+              y: item.year,
+              x: 1
+            });
+            //if (!result[tag][item.year]) result[tag][item.year] = 0;
+            //result[tag][item.year] = result[tag][item.year] + 1;
+          });
+          return result;
+        }, {});
+
+        var returnData = _.map(mapped, function(item, key) {
+          return {
+            "key": key,
+            "values": item
+          }
+        });
+
+        console.log(returnData);
+
+        return returnData;
+
+      },
       getAllItemsGroupedByYear: function() {
         return this.groupItemsByYear(items);
       },

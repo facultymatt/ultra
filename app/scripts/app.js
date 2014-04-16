@@ -6,7 +6,8 @@ angular.module('ultraApp', [
   'ngSanitize',
   'ngRoute',
   'hc.marked',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'nvd3ChartDirectives'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
