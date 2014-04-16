@@ -4,7 +4,24 @@ angular
   .module('ultraApp')
   .factory('timeline', function() {
 
+    // {
+    //   year: 2014,
+    //   tags: [''],
+    //   title: "",
+    //   desc: ""
+    // }
+
     var items = [{
+      year: 2014,
+      tags: ['openFrameworks'],
+      title: "ofxAddons co-maintainer",
+      desc: "Began helping maintain and categorize new ofxAddons"
+    }, {
+      year: 2014,
+      tags: ['openFrameworks'],
+      title: "MIT Transform Table",
+      desc: "Developed software interface for MIT shape shifting table"
+    }, {
       year: 2014,
       tags: ['LEGO', 'event'],
       title: "Competed in LEGOLand Discovery Center's Brick Factor",
@@ -14,6 +31,11 @@ angular
       tags: ['api', 'angularjs', 'mongodb', 'nodejs', 'ui', 'app', 'develop'],
       title: "LeaseRep, powered by MarlinApps",
       desc: "Worked with Marlin Leasing, a fortune 500 company, to bring to life a new vision for their quoting and applications tools. We developed a platform using a modern stack."
+    }, {
+      year: 2013,
+      tags: ['website', 'develop', 'apostrophe'],
+      title: "Fiore Design Wesbite",
+      desc: "Developed website for local design firm."
     }, {
       year: 2013,
       tags: ['angularjs', 'firebase', 'develop', 'design', 'ui'],
@@ -48,7 +70,7 @@ angular
       year: 2012,
       tags: ['platform', 'scale', 'cloud', 'php', 'develop'],
       title: "Blank You Very Much",
-      desc: "Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. <a href='http: //www.blankyouverymuch.com/'>blankyouverymuch.com</a>"
+      desc: "Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. <a href='http://www.blankyouverymuch.com'>blankyouverymuch.com</a>"
     }, {
       year: 2012,
       tags: ['api', 'socketio', 'realtime', 'app', 'develop'],
@@ -103,7 +125,7 @@ angular
       year: 2011,
       tags: ['LEGO', 'fabrication', 'design'],
       title: "LEGO Workshop",
-      desc: "Researching for my thesis, I explored the LEGO digital designer and decided to make my graduate fab shop a reality. If we can get kids building these new manufacturing machines, they will begin to understand how they work."
+      desc: "Researching for my thesis, I explored the LEGO digital designer and decided to make my graduate fab shop a reality. If we can get kids building these new manufacturing machines, they will begin to understand how they work. <a href='/projects/lego-fabrication-shop'>Explore the workshop</a>"
     }, {
       year: 2010,
       tags: ['demonstration', 'build', 'develop'],
@@ -116,7 +138,7 @@ angular
       desc: "Design charrette where i worked with a team of grad and undergrad to design a musical collaboration tool."
     }, {
       year: 2010,
-      tags: ['design', 'develop'],
+      tags: ['design', 'develop', 'website'],
       title: "MID@Uarts Website",
       desc: "Developed website for graduate program (summer)"
     }, {

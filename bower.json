@@ -13,7 +13,8 @@
     "angular-route": "1.2.11",
     "angular-marked": "Hypercubed/angular-marked",
     "marked": "~0.2.10",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "angular-bootstrap": "~0.10.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

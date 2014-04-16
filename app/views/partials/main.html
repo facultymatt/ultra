@@ -2,35 +2,62 @@
   <h1>Design and develop!</h1>
 </div> -->
 
-<!-- <div class="row">
+<div class="row">
   <div class="col-xs-12 ">
     <div ng-repeat="item in tags | orderBy:'count':true ">
         {{item.tag}}, {{item.count}}
     </div>
   </div>
 </div>
- -->
+
 
 <div class="row">
   <div class="col-xs-12 select-history">
 
-    <h2>Select Timeline</h2>
+    <div class="page-header">
+      <h2>Timeline</h2>
+      <p>My work over the years</p>
+    </div>
 
-    <input type="text" class="form-control" ng-model="filterTerm" />
+    <div class="col-sx-4">
+      <input 
+       type="text" 
+       class="form-control " 
+       ng-model="filterTerm" 
+       placeholder="Search project tags"
+       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8" />
+    </div>
 
-    <div ng-repeat="year in years | orderBy:'year':true ">
+    <hr />
+
+    <div ng-show="matches > 0" ng-repeat="year in years | orderBy:'year':true ">
 
       <h4>{{year.year}}</h4>
-      
+
       <div 
-       ng-show="filterTerm === '' || item.match == true" 
+       class="timeline-item"
+       ng-class="{'being-filtered' : filterTerm != ''}"
+       ng-show="filterTerm == '' || item.match == true" 
        ng-repeat="item in year.items">
         <h5>{{item.title}}</h5>
-        <p>{{item.desc}}</p>
+        <p ng-bind-html="item.desc"></p>
+        <p class="tags">
+            <em class="small" ng-repeat="tag in item.tags">
+                {{tag}}<span ng-if="!$last">, </span> 
+            </em>
+        </p>
       </div>
 
       <hr ng-if="!$last" />
 
+    </div>
+
+    <div ng-show="matches == 0">
+      <p>
+        <br />
+        <br />
+        Do you want to collaborate on {{filterTerm}}? Drop me a line!
+      </p>
     </div>
 
   </div>

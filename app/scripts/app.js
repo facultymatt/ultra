@@ -5,7 +5,8 @@ angular.module('ultraApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'hc.marked'
+  'hc.marked',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -29,6 +30,10 @@ angular.module('ultraApp', [
       .when('/projects', {
         templateUrl: 'partials/project_index',
         controller: 'ProjectCtrl'
+      })
+      .when('/bookshelf', {
+        templateUrl: 'partials/bookshelf',
+        controller: 'BookshelfCtrl'
       })
       .otherwise({
         redirectTo: '/'

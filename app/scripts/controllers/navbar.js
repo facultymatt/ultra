@@ -3,14 +3,14 @@
 angular.module('ultraApp')
   .controller('NavbarCtrl', function($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Timeline',
       'link': '/'
-    }, {
-      'title': 'Settings',
-      'link': '/settings'
     }, {
       'title': 'Projects',
       'link': '/projects'
+    }, {
+      'title': 'Bookshelf',
+      'link': '/bookshelf'
     }];
 
     $scope.logout = function() {

@@ -86,6 +86,28 @@ body {
     }
 }
 
+.timeline-item {
+    &:hover, 
+    &.being-filtered {
+        .tags {
+            color: $gray;  
+        }
+    }
+}
+
+.tags {
+    font-size: 0.8em;
+    margin-top: -8px;
+    color: $gray-lighter;
+    @include transition(color 140ms ease);
+    margin-bottom: 14px;
+}
+
+iframe {
+    max-width: 100%;
+    display: block;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
