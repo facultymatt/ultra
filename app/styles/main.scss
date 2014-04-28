@@ -84,13 +84,23 @@ body {
         margin-bottom: 2px;
         color: #E07F2F;
     }
+
+    a {
+      color: lighten($text-color, 10%);
+      border-bottom: 1px dotted $text-color;
+      @include transition(color 140ms ease);
+      &:hover {
+        text-decoration: none;
+        color: $text-color;
+      }
+    }
 }
 
 .timeline-item {
     &:hover, 
     &.being-filtered {
         .tags {
-            color: $gray;  
+            opacity: 1;  
         }
     }
 }
@@ -98,8 +108,8 @@ body {
 .tags {
     font-size: 0.8em;
     margin-top: -8px;
-    color: $gray-lighter;
-    @include transition(color 140ms ease);
+    opacity: 0.2; 
+    @include transition(opacity 140ms ease);
     margin-bottom: 14px;
 }
 
@@ -130,3 +140,68 @@ iframe {
         border-bottom: 0;
     }
 }
+
+.rule line {
+  stroke: #eee;
+  shape-rendering: crispEdges;
+}
+
+.rule line.axis {
+  stroke: #000;
+}
+
+path {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+circle {
+  fill: #fff;
+  stroke: #000;
+}
+
+
+.nvd3 .nv-groups .nv-line {
+  fill: none;
+  stroke-width: 1.5px;
+  
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+
+  // transition: stroke-width 250ms linear;
+  // -moz-transition: stroke-width 250ms linear;
+  // -webkit-transition: stroke-width 250ms linear;
+
+  // transition-delay: 250ms
+  // -moz-transition-delay: 250ms;
+  // -webkit-transition-delay: 250ms;
+  
+}
+
+.nvd3 .nv-groups path.nv-line.nv-thin-line {
+  stroke-width: 1px;
+}
+
+
+.nvd3 .nv-groups path.nv-area {
+  stroke: none;
+  
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+
+  // stroke-width: 2.5px;
+  // transition: stroke-width 250ms linear;
+  // -moz-transition: stroke-width 250ms linear;
+  // -webkit-transition: stroke-width 250ms linear;
+
+  // transition-delay: 250ms
+  // -moz-transition-delay: 250ms;
+  // -webkit-transition-delay: 250ms;
+  
+}
+
+.nvd3 .nv-line.hover path {
+  stroke-width: 6px;
+}
+
+

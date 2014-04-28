@@ -4,12 +4,31 @@
 
 <div class="row">
   <div class="col-xs-12 ">
+    <nvd3-line-chart
+        data="exampleData"
+        x="xFunction()"
+        y="yFunction()"
+        showXAxis="true"
+        showYAxis="false"
+        tooltips="true"
+        interpolate="basis"
+        height="320"
+        useInteractiveGuideLine="false"
+        showLegend="true"
+        objectEquality="true"
+        color="colorFunction()"
+        legendColor="colorFunction()">
+    </nvd3-line-chart>
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-xs-12 ">
     <div ng-repeat="item in tags | orderBy:'count':true ">
         {{item.tag}}, {{item.count}}
     </div>
   </div>
-</div>
-
+</div> -->
 
 <div class="row">
   <div class="col-xs-12 select-history">
@@ -25,7 +44,8 @@
        class="form-control " 
        ng-model="filterTerm" 
        placeholder="Search project tags"
-       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8" />
+       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8"
+       typeahead-on-select="updateTimelineWithTypeaheadValue($viewValue)" />
     </div>
 
     <hr />
@@ -42,7 +62,7 @@
         <h5>{{item.title}}</h5>
         <p ng-bind-html="item.desc"></p>
         <p class="tags">
-            <em class="small" ng-repeat="tag in item.tags">
+            <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
                 {{tag}}<span ng-if="!$last">, </span> 
             </em>
         </p>

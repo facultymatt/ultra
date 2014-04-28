@@ -6,13 +6,17 @@ angular.module('ultraApp', [
   'ngSanitize',
   'ngRoute',
   'hc.marked',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'nvd3ChartDirectives',
+  'angulartics', 
+  'angulartics.google.analytics'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        reloadOnSearch: false
       })
       .when('/login', {
         templateUrl: 'partials/login',
