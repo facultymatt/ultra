@@ -4,7 +4,28 @@
 // values for d3 charts
 
 angular.module('ultraApp')
-  .controller('MainCtrl', function($scope, $http, timeline) {
+  .controller('MainCtrl', function($scope, $http, timeline, $location, $routeParams) {
+
+    // $scope.$on('stateChange.directive', function(angularEvent, event){
+    //     console.log('elementClick', arguments);
+    //     angularEvent.targetScope.$parent.event = event;
+    //     angularEvent.targetScope.$parent.$digest();
+    // });
+
+    //'legendClick', 'legendDblclick', 'legendMouseover'
+    //stateChange
+    $scope.$on('stateChange.legend.directive', function (event, d) {
+      console.log('stateChange.legend.directive', event, d);
+    });
+    $scope.$on('legendClick.directive', function (d, i) {
+      console.log('legendClick.directive', d, i);
+    });
+    // $scope.$on('legendDblclick.directive', function (d, i) {
+    //   console.log('legendDblclick.directive', d, i);
+    // });
+    // $scope.$on('legendMouseover.directive', function (d, i) {
+    //   console.log('legendMouseover.directive', d, i);
+    // });
 
     // we need some better colors!
     var colorArray = ['#ffa500', '#c80032', '#0000ff', '#6464ff'];
@@ -49,11 +70,17 @@ angular.module('ultraApp')
     });
 
     // tag filtering
-    $scope.filterTerm = '';
+    $scope.filterTerm = $routeParams.tag || '';
     $scope.matches = 0;
 
+    // $scope.$on('$locationChangeSuccess', function() {
+    //   $scope.filterTerm = $routeParams.tag || '';
+    // });
+
     $scope.$watch('filterTerm', function(newValue) {
-      newValue = newValue.toLowerCase();
+      
+      newValue = newValue.toString().toLowerCase();
+      
       $scope.matches = 0;
       _.each($scope.years, function(year) {
         _.filter(year.items, function(item) {
@@ -65,6 +92,13 @@ angular.module('ultraApp')
           }
         });
       });
+
+      if(newValue !== '') {
+        $location.search('tag', newValue);
+      } else {
+        $location.search({});
+      }
+
     });
 
   });

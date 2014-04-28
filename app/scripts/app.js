@@ -13,7 +13,8 @@ angular.module('ultraApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        reloadOnSearch: false
       })
       .when('/login', {
         templateUrl: 'partials/login',
