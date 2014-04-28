@@ -2,15 +2,15 @@
   "name": "ultra",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.11",
+    "angular": ">=1.2.*",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "jquery": "~1.11.0",
-    "bootstrap-sass": "~3.0.2",
-    "angular-resource": "1.2.11",
-    "angular-cookies": "1.2.11",
-    "angular-sanitize": "1.2.11",
-    "angular-route": "1.2.11",
+    "bootstrap-sass-official": "~3.1.1",
+    "angular-resource": ">=1.2.*",
+    "angular-cookies": ">=1.2.*",
+    "angular-sanitize": ">=1.2.*",
+    "angular-route": ">=1.2.*",
     "angular-marked": "Hypercubed/angular-marked",
     "marked": "~0.2.10",
     "lodash": "~2.4.1",
@@ -21,7 +21,8 @@
     "angulartics": "~0.15.17"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.11",
-    "angular-scenario": "1.2.11"
-  }
+    "angular-mocks": ">=1.2.*",
+    "angular-scenario": ">=1.2.*"
+  },
+  "testPath": "test/client/spec"  
 }

@@ -14,25 +14,33 @@ angular.module('ultraApp')
 
     //'legendClick', 'legendDblclick', 'legendMouseover'
     //stateChange
-    $scope.$on('stateChange.legend.directive', function(event, d) {
+    $scope.$on('stateChange.legend.directive', function() {
       //console.log('stateChange.legend.directive', event, d);
     });
     $scope.$on('legendClick.directive', function(d, i) {
       var filterTerm = i.key.toLowerCase();
-      $analytics.eventTrack('legendClick.directive', {  category: 'key', label: filterTerm });
+      $analytics.eventTrack('legendClick.directive', {
+        category: 'key',
+        label: filterTerm
+      });
     });
-    $scope.$on('legendDblclick.directive', function (d, i) {
+    $scope.$on('legendDblclick.directive', function(d, i) {
       var filterTerm = i.key.toLowerCase();
       $scope.filterTerm = filterTerm;
-      $analytics.eventTrack('legendDblclick.directive', {  category: 'chart', label: filterTerm });
+      $analytics.eventTrack('legendDblclick.directive', {
+        category: 'chart',
+        label: filterTerm
+      });
       $scope.$apply();
     });
 
     $scope.getColorForTag = function(tag) {
       tag = tag.toLowerCase();
-      var color = {color: '#' + colors[tag]};
-      return color; 
-    }
+      var color = {
+        color: '#' + colors[tag]
+      };
+      return color;
+    };
 
     // $scope.$on('legendMouseover.directive', function (d, i) {
     //   console.log('legendMouseover.directive', d, i);
@@ -52,21 +60,21 @@ angular.module('ultraApp')
       api: 'A67500',
       geolocation: 'FFC740',
       mongodb: 'FFD673',
-      
+
       drupal: 'FF2800',
       php: 'BF4630',
 
       presentation: 'A61A00',
       demonstration: 'FF5D40',
       publication: 'FF8973',
-      
+
       game: '06799F',
       website: '216278',
       exhibition: 'A61A00',
       print: '024E68',
       lego: '3AAACF',
       'physical prototype': '61B4CF'
-    }
+    };
 
 
     /*
@@ -103,7 +111,6 @@ angular.module('ultraApp')
     physical prototype
     */
 
-    var colorArray = ['#ffa500', '#c80032', '#0000ff', '#6464ff'];
     $scope.colorFunction = function() {
       return function(d) {
         return '#' + colors[d.key.toLowerCase()];
@@ -156,9 +163,9 @@ angular.module('ultraApp')
       var filterTerm = $scope.filterTerm.toLowerCase();
       console.log('filterTerm', filterTerm);
 
-      _.each($scope.exampleData, function(data){
+      _.each($scope.exampleData, function(data) {
         var dataKey = data.key.toLowerCase();
-        if(dataKey === filterTerm) {
+        if (dataKey === filterTerm) {
           console.log('enable ' + dataKey);
           data.disabled = false;
         } else {

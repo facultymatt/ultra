@@ -1,8 +1,8 @@
-$icon-font-path: "/bower_components/bootstrap-sass/fonts/";
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
-@import 'bootstrap-sass/lib/bootstrap';
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "variables";
 
-@import 'variables';
 
 .browsehappy {
     margin: 0.2em 0;
