@@ -2,13 +2,20 @@
   "name": "ultra",
   "version": "0.0.0",
   "dependencies": {
-    "express": "~3.4.3",
+    "express": "~4.0.0",
+    "morgan": "~1.0.0",
+    "body-parser": "~1.0.0",
+    "method-override": "~1.0.0",
+    "static-favicon": "~1.0.1",
+    "cookie-parser": "~1.0.1",
+    "express-session": "~1.0.2",
+    "errorhandler": "~1.0.0",
+    "compression": "~1.0.1",
     "lodash": "~2.4.1",
-    "mongoose": "~3.5.5",
-    "mongoose-unique-validator": "~0.3.0",
-    "connect-mongo": "~0.4.0",
-    "passport": "latest",
-    "passport-local": "latest",
+    "mongoose": "~3.8.8",
+    "connect-mongo": "mrzepinski/connect-mongo#2135988",
+    "passport": "~0.2.0",
+    "passport-local": "~0.1.6",
     "ejs": "~0.8.4"
   },
   "devDependencies": {
@@ -23,8 +30,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-htmlmin": "~0.1.3",
-    "jpegtran-bin": "0.2.0",
-    "grunt-contrib-imagemin": "~0.3.0",
+    "grunt-contrib-imagemin": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.5.2",
@@ -52,7 +58,14 @@
     "karma-coffee-preprocessor": "~0.1.2",
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.9",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "grunt-mocha-test": "~0.8.1",
+    "supertest": "~0.8.2",
+    "should": "~2.1.0",
+    "grunt-env": "~0.4.1",
+    "grunt-node-inspector": "~0.1.3",
+    "grunt-nodemon": "~0.2.0",
+    "open": "~0.0.4"
   },
   "engines": {
     "node": ">=0.10.0"
