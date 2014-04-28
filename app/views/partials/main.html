@@ -12,9 +12,10 @@
         showYAxis="false"
         tooltips="true"
         interpolate="basis"
-        height="300"
-        useInteractiveGuideLine="true"
+        height="320"
+        useInteractiveGuideLine="false"
         showLegend="true"
+        objectEquality="true"
         color="colorFunction()"
         legendColor="colorFunction()">
     </nvd3-line-chart>
@@ -43,7 +44,8 @@
        class="form-control " 
        ng-model="filterTerm" 
        placeholder="Search project tags"
-       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8" />
+       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8"
+       typeahead-on-select="updateTimelineWithTypeaheadValue($viewValue)" />
     </div>
 
     <hr />
@@ -60,7 +62,7 @@
         <h5>{{item.title}}</h5>
         <p ng-bind-html="item.desc"></p>
         <p class="tags">
-            <em class="small" ng-repeat="tag in item.tags">
+            <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
                 {{tag}}<span ng-if="!$last">, </span> 
             </em>
         </p>

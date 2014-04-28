@@ -7,7 +7,9 @@ angular.module('ultraApp', [
   'ngRoute',
   'hc.marked',
   'ui.bootstrap',
-  'nvd3ChartDirectives'
+  'nvd3ChartDirectives',
+  'angulartics', 
+  'angulartics.google.analytics'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

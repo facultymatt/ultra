@@ -4,6 +4,31 @@ angular
   .module('ultraApp')
   .factory('timeline', ['timelineData', function(items) {
 
+    /*
+    openframeworks
+    javascript
+    angularjs
+    tdd
+    nodejs
+    jquery
+    html5
+    api
+    geolocation
+    mongodb
+    drupal
+    php
+  
+    presentation
+    demonstration
+    publication
+    game
+    website
+    exhibition
+    print
+    legos
+    physical prototype
+    */
+
     return {
       // specific data format for d3 timeline
       // gets each tag, with a count of the tag

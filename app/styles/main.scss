@@ -84,13 +84,23 @@ body {
         margin-bottom: 2px;
         color: #E07F2F;
     }
+
+    a {
+      color: lighten($text-color, 10%);
+      border-bottom: 1px dotted $text-color;
+      @include transition(color 140ms ease);
+      &:hover {
+        text-decoration: none;
+        color: $text-color;
+      }
+    }
 }
 
 .timeline-item {
     &:hover, 
     &.being-filtered {
         .tags {
-            color: $gray;  
+            opacity: 1;  
         }
     }
 }
@@ -98,8 +108,8 @@ body {
 .tags {
     font-size: 0.8em;
     margin-top: -8px;
-    color: $gray-lighter;
-    @include transition(color 140ms ease);
+    opacity: 0.2; 
+    @include transition(opacity 140ms ease);
     margin-bottom: 14px;
 }
 
