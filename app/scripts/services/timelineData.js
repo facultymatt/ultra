@@ -38,7 +38,7 @@ angular
     }, {
       disabled: false,
       year: 2014,
-      tags: ['nodejs', 'angularjs', 'mongodb', 'javascript'],
+      tags: ['nodejs', 'angularjs', 'mongodb', 'javascript', 'website'],
       title: "Personal Timeline",
       desc: "An updated website to show my work over the years. Built using the Angular FullStack <a href='https://github.com/DaftMonk/generator-angular-fullstack'>Yeoman Generator</a>"
     }, {
@@ -128,7 +128,7 @@ angular
     }, {
       disabled: false,
       year: 2013,
-      tags: ['api', 'php'],
+      tags: ['api', 'php', 'website'],
       title: "BizVizz: Corporate Accountability App",
       desc: "Early user experience and API / web development to support this award winning app. Download from the appstore by visiting <a href='http://bizvizz.com/'>bizvizz.com</a>. Read press on <a href='http://www.phillygeekawards.com/previous-winners/'>Philly Geek Awards</a> and <a href='http://technical.ly/'>Technical.ly Philly</a>"
     }, {
@@ -140,7 +140,7 @@ angular
     }, {
       disabled: false,
       year: 2012,
-      tags: ['jquery', 'php', 'javascript'],
+      tags: ['jquery', 'php', 'javascript', 'website'],
       // website, template, plugins,
       title: "BDDW",
       desc: "Developed bespoke website for bespoke furniture company. Custom admin interface was developed for managing products. Visit <a href='http://bddw.com/'>BDDW</a>"
@@ -180,7 +180,7 @@ angular
     }, {
       disabled: false,
       year: 2012,
-      tags: ['php', 'jquery', 'javascript'],
+      tags: ['php', 'jquery', 'javascript', 'website'],
       // 'platform', 'scale', 'cloud', 'php', 'develop'
       title: "Blank You Very Much",
       desc: "Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. <a href='http://www.blankyouverymuch.com'>blankyouverymuch.com</a>"
@@ -237,7 +237,7 @@ angular
       desc: "A Collaboration with Fleisher Art Memorial, MID@UArts, The Hacktory, and colleague Jake Wells, We started an after school class where children learned to use real tools to take apart common household appliances. Students then built new creations with the parts. We developed projects and curriculum to cultivate systematic creativity."
     }, {
       disabled: false,
-      year: 2011, 
+      year: 2011,
       tags: ['openFrameworks', 'physical prototype'],
       title: "PIXEL",
       desc: "PIXEL connects people through their eyes. Peer into the PIXEL and invite others to experience what you see. The PIXEL exposes exactly what you are looking at by tracking your eye movements. Tethering multiple PIXELs together creates a personal and intimate visual connection. Learn more at <a href='http://lookintopixel.com/'>lookintopixel.com</a> and <a href='http://mmworks.mattmillerart.com/work/pixel/'>project page</a>."
