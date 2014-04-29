@@ -1,0 +1,27 @@
+<div ng-show="matches > 0" ng-repeat="year in years | orderBy:'year':true ">
+
+    <h4>{{year.year}}</h4>
+
+    <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-show="filterTerm == '' || item.match == true" ng-repeat="item in year.items">
+        <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
+
+        <h5 ng-mouseenter="setActiveProject(item)">{{item.title}}</h5>
+
+        <span 
+        ng-style="getBgColorForTag(tag)"
+        class="tiny-circle" 
+        ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+        </span>
+
+        <!-- <p class="desc" ng-bind-html="item.desc"></p> -->
+        <!-- <p class="tags">
+            <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+                {{tag}}
+                <span ng-if="!$last">,</span>
+            </em>
+        </p> -->
+    </div>
+
+    <hr ng-if="!$last" />
+
+</div>

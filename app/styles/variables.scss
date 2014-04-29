@@ -18,7 +18,7 @@ $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -------------------------
 
-$brand-primary:         #428bca !default;
+$brand-primary:         $gray-light;
 $brand-success:         #5cb85c !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
@@ -337,7 +337,7 @@ $nav-tabs-justified-active-link-border-color:     $body-bg !default;
 
 // Pills
 $nav-pills-border-radius:                   $border-radius-base !default;
-$nav-pills-active-link-hover-bg:            $component-active-bg !default;
+$nav-pills-active-link-hover-bg:            red !default;
 $nav-pills-active-link-hover-color:         $component-active-color !default;
 
 

@@ -1,0 +1,16 @@
+<!-- 
+<bootstrap-tagsinput
+  ng-model="cities"
+  typeahead-source="queryCities"
+  tagclass="getTagClass"
+  itemvalue="value"
+  itemtext="text">
+</bootstrap-tagsinput> -->
+
+<input type="text" class="form-control " ng-model="filterTerm" placeholder="Search project tags" typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8" typeahead-on-select="updateTimelineWithTypeaheadValue($viewValue)" />
+
+<small>Try 
+<a ng-click="filterTerm='angularjs'">angularjs</a>,
+<a ng-click="filterTerm='openframeworks'">openFrameworks</a>, or
+<a ng-click="filterTerm='lego'">LEGO</a>.
+</small>
