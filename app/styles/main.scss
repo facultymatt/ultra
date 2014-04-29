@@ -107,15 +107,16 @@ body {
             opacity: 1;  
         }
     }
+    .tags {
+        font-size: 0.8em;
+        margin-top: -8px;
+        opacity: 0.2; 
+        @include transition(opacity 140ms ease);
+        margin-bottom: 14px;
+    }
 }
 
-.tags {
-    font-size: 0.8em;
-    margin-top: -8px;
-    opacity: 0.2; 
-    @include transition(opacity 140ms ease);
-    margin-bottom: 14px;
-}
+
 
 iframe {
     max-width: 100%;
@@ -222,3 +223,8 @@ circle {
   border-right: 5px solid $gray-dark;
   border-bottom: 5px solid $gray-dark;
 }
+
+
+
+
+

@@ -6,29 +6,40 @@
 angular.module('ultraApp')
   .controller('MainCtrl', function($scope, $http, timeline, $location, $routeParams, $analytics, $timeout) {
 
-    // $scope.$on('stateChange.directive', function(angularEvent, event){
-    //     console.log('elementClick', arguments);
-    //     angularEvent.targetScope.$parent.event = event;
-    //     angularEvent.targetScope.$parent.$digest();
-    // });
+    // ------------------------------
+    // Tags
+    // ------------------------------
 
-    var activeTooltipObject = {};
+    $scope.cities = [{
+      "value": 1,
+      "text": "Amsterdam",
+      "continent": "Europe"
+    }];
 
-    $scope.activeToolTip = function(item) {
-      $scope.activeItem = item;
+    // returns class given tag name
+    // @todo needs to support tag style
+    $scope.getTagClass = function(city) {
+      return 'badge badge-info';
     };
 
+    // set active tag
+    // @todo support tag array
     $scope.setActiveTag = function(tag) {
       $scope.filterTerm = tag.toLowerCase();
       setTimelineFromTag();
     }
 
-    // $scope.getActiveTooltip = function() {
-    //   console.log('getting tooltip object');
-    //   return activeTooltipObject;
-    // }
 
+    // ------------------------------
+    // Tooltips
+    // ------------------------------
 
+    // triggers the project "tooltip" to open
+    $scope.setActiveProject = function(item) {
+      $scope.activeItem = item;
+    };
+
+    // tooltips that show when use how
     $scope.toolTipContentFunction = function() {
       return function(key, x, y, e, graph) {
 
@@ -42,86 +53,11 @@ angular.module('ultraApp')
     };
 
 
-    // $scope.$on('tooltipShow.directive', function (event) {
-    //   var targetData = event.targetScope.data;
-    //   _.each(targetData, function(item) {
-    //     console.log(item);
-    //   })
-    // });
+    // ------------------------------
+    // Colors
+    // ------------------------------
 
-    //'legendClick', 'legendDblclick', 'legendMouseover'
-    //stateChange
-    $scope.$on('stateChange.legend.directive', function() {
-      //console.log('stateChange.legend.directive', event, d);
-    });
-    $scope.$on('legendClick.directive', function(d, i) {
-      var filterTerm = i.key.toLowerCase();
-      $analytics.eventTrack('legendClick.directive', {
-        category: 'key',
-        label: filterTerm
-      });
-    });
-    $scope.$on('legendDblclick.directive', function(d, i) {
-      var filterTerm = i.key.toLowerCase();
-      $scope.filterTerm = filterTerm;
-      $analytics.eventTrack('legendDblclick.directive', {
-        category: 'chart',
-        label: filterTerm
-      });
-      $scope.$apply();
-    });
-
-    $scope.getColorForTag = function(tag) {
-      tag = tag.toLowerCase();
-      var color = {
-        color: colors[tag]
-      };
-      return color;
-    };
-
-    $scope.getBgColorForTag = function(tag) {
-      tag = tag.toLowerCase();
-      var color = {
-        'background-color': colors[tag]
-      };
-      return color;
-    };
-
-    // $scope.$on('legendMouseover.directive', function (d, i) {
-    //   console.log('legendMouseover.directive', d, i);
-    // });
-
-    // we need some better colors!
-
-    var colors = {
-      openframeworks: 'FF8300',
-      javascript: 'BF7930',
-      angularjs: 'A65500',
-      nodejs: 'FFA240',
-      jquery: 'FFBB73',
-
-      tdd: 'FFB400',
-      html5: 'BF9530',
-      api: 'A67500',
-      geolocation: 'FFC740',
-      mongodb: 'FFD673',
-
-      drupal: 'FF2800',
-      php: 'BF4630',
-
-      presentation: 'A61A00',
-      demonstration: 'FF5D40',
-      publication: 'FF8973',
-
-      game: '06799F',
-      website: '216278',
-      exhibition: 'A61A00',
-      print: '024E68',
-      lego: '3AAACF',
-      'physical prototype': '61B4CF'
-    };
-
-    colors = {};
+    var colors = {};
 
     var colorCats = [{
       type: "Core competency",
@@ -140,89 +76,44 @@ angular.module('ultraApp')
       tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
     }];
 
+    // uses the colors array and tags
+    function setTagColors() {
+      _.each(colorCats, function(cat) {
 
-    _.each(colorCats, function(cat) {
+        var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length + 2], cat.tags.length);
 
-      var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length + 2], cat.tags.length);
-
-      _.each(cat.tags, function(tagName, i) {
-        var newColor = scale(i);
-        colors[tagName] = newColor.hex();
+        _.each(cat.tags, function(tagName, i) {
+          var newColor = scale(i);
+          colors[tagName] = newColor.hex();
+        });
       });
-    });
+      return colorCats;
+    }
 
-    $scope.colorCats = colorCats;
+    $scope.colorCats = setTagColors();
 
+    // get color
+    $scope.getColorForTag = function(tag) {
+      tag = tag.toLowerCase();
+      var color = {
+        color: colors[tag]
+      };
+      return color;
+    };
 
-    /*
-    
-    // core competencies
-    openframeworks
-    javascript
-    
-    // technology
-    angularjs
-    nodejs
-    jquery
-    html5
-    api
-    geolocation
-    mongodb
-    drupal
-    php
-    tdd
-
-    // area of interest
-    presentation
-    demonstration
-    publication
-    website
-    exhibition
-    print
-    physical prototype
-    game
-    legos
-    apps
-
-    // jobs
-    !!! add tags for these genious! 
-
-    */
-
-
-    /*
-
-    FF8300  BF7930  A65500  FFA240  FFBB73
-    Secondary Color A:
-    FFB400  BF9530  A67500  FFC740  FFD673
-    Secondary Color B:
-    FF2800  BF4630  A61A00  FF5D40  FF8973
-    Complementary Color:
-    06799F  216278  024E68  3AAACF  61B4CF
-
-    openframeworks
-    javascript
-    angularjs
-    tdd
-    nodejs
-    jquery
-    html5
-    api
-    geolocation
-    mongodb
-    drupal
-    php
-
-    presentation
-    demonstration
-    publication
-    game
-    website
-    exhibition
-    print
-    legos
-    physical prototype
-    */
+    // get BG color
+    // Todo refactor into same function
+    $scope.getBgColorForTag = function(tag) {
+      tag = tag.toLowerCase();
+      var color = {
+        'background-color': colors[tag]
+      };
+      return color;
+    };
+  
+    // ------------------------------
+    // Time line functions
+    // ------------------------------
 
     $scope.colorFunction = function() {
       return function(d) {
@@ -233,6 +124,7 @@ angular.module('ultraApp')
         }
       };
     };
+    
     $scope.xFunction = function() {
       return function(d) {
         return d.x;
