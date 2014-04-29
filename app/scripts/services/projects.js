@@ -1,29 +1,75 @@
 'use strict';
 
-angular
-  .module('ultraApp')
-  .factory('timelineData', function() {
+/*
+{
+  disabled: false,
+  year: 20,
+  tags: [],
+  title: "",
+  desc: ""
+}
 
-    /*
-    {
-      disabled: false,
-      year: 20,
-      tags: [],
-      title: "",
-      desc: ""
-    }
+// faculty website, angularjs
+// Instagram clock? 
+// Portfolio share? 
+// Gridster arrange
+// http://www.shakingthrough.com/
+// Liberty resources? 
+// Info graphics galore!
 
-    // faculty website, angularjs
-    // Instagram clock? 
-    // Portfolio share? 
-    // Gridster arrange
-    // http://www.shakingthrough.com/
-    // Liberty resources? 
-    // Info graphics galore!
+// Instagram clock? 
+// Portfolio share? 
+// Gridster arrange
+// angular Unsaved Changes
+// http://www.shakingthrough.com/
+// Liberty resources? 
+// Info graphics galore! 
 
-    */
+*/
 
-    return [{
+angular.module('ultraApp')
+  .service('Projects', function Projects($q) {
+    // AngularJS will instantiate a singleton by calling "new" on this function
+    // this means that changing an value will change it across the app
+    // thus simulating "persisting" to a backend
+    // although this doesn't quite happen since we are using defer
+    
+    var projects = [];
+
+    // groups items by year given array of items using _.groupBy()
+    // BUT returns in a more usable format where 
+    // year = year and items = array of projects for that year
+    function groupItemsByYear(selectItems) {
+      var grouped = _.groupBy(selectItems, 'year');
+      return _.map(grouped, function(items, key) {
+        return {
+          year: key,
+          items: items
+        };
+      });
+    };
+
+    // mock async all call
+    // starting with this pattern allows seamless transition to
+    // database when
+
+    // get all projects
+    this.getAll = function() {
+      var delay = $q.defer();
+      delay.resolve(projects);
+      return delay.promise;
+    };
+
+    // get all projects grouped by year
+    this.getAllGroupedByYear = function() {
+      var delay = $q.defer();
+      delay.resolve(groupItemsByYear(projects));
+      return delay.promise;
+    };
+
+    // project data
+    // this data would be returned from mongo in typical app
+    projects = [{
       disabled: false,
       year: 2014,
       tags: ['openFrameworks'],
@@ -353,11 +399,4 @@ angular
       desc: "Very first portfolio site and jquery project! How old school!"
     }];
 
-    // Instagram clock? 
-    // Portfolio share? 
-    // Gridster arrange
-    // angular Unsaved Changes
-    // http://www.shakingthrough.com/
-    // Liberty resources? 
-    // Info graphics galore! 
   });

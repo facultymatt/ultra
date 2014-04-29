@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+xdescribe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('ultraNewApp'));
+  beforeEach(module('ultraApp'));
 
   var MainCtrl,
     scope,

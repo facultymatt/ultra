@@ -16,12 +16,6 @@ angular.module('ultraApp')
       "continent": "Europe"
     }];
 
-    // returns class given tag name
-    // @todo needs to support tag style
-    $scope.getTagClass = function(city) {
-      return 'badge badge-info';
-    };
-
     // set active tag
     // @todo support tag array
     $scope.setActiveTag = function(tag) {
@@ -90,28 +84,6 @@ angular.module('ultraApp')
       tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
     }];
 
-    // uses the colors array and tags
-    function setTagColors() {
-      _.each(colorCats, function(cat) {
-
-        var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length], cat.tags.length);
-
-        _.each(cat.tags, function(tagName, i) {
-          var newColor = scale(i);
-
-          var theTag = _.where($scope.tags, function(tag) {
-            return tag.tag.toLowerCase() === tagName;
-          });
-
-          theTag.baseColorStarter = scale(0).hex();
-
-          colors[tagName] = newColor.hex();
-        });
-      });
-      return colorCats;
-    }
-
-    
 
     // get color
     $scope.getColorForTag = function(tag) {
@@ -160,7 +132,7 @@ angular.module('ultraApp')
     };
 
     // load data from service
-    $scope.years = timeline.getAllItemsGroupedByYear();
+    $scope.years = timeline.getAllGroupedByYear();
     $scope.tags = timeline.getTags();
     $scope.$watch('tags', function() {
       $scope.colorCats = setTagColors();
