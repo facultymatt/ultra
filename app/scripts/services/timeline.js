@@ -5,10 +5,13 @@ angular
   .factory('timeline', ['timelineData', function(items) {
 
     /*
+    
+    // core competencies
     openframeworks
     javascript
+    
+    // technology
     angularjs
-    tdd
     nodejs
     jquery
     html5
@@ -17,16 +20,24 @@ angular
     mongodb
     drupal
     php
-  
+    tdd
+
+    // area of interest
     presentation
     demonstration
     publication
-    game
     website
     exhibition
     print
-    legos
     physical prototype
+    game
+    legos
+    apps
+
+    // jobs
+    !!! add tags for these genious! 
+
+
     */
 
     return {
@@ -68,9 +79,25 @@ angular
           };
         });
 
-        console.log(returnData);
-
         return returnData;
+
+      },
+      getAllProjectsForTimeline: function() {
+
+        var returnData = [];
+
+        _.each(items, function(project, i) {
+          project.key = project.title;
+          //project.disabled = true;
+          project.values = [{
+            x: project.year,
+            y: i
+          }];
+        });
+
+        console.log(items[0]);
+
+        return items;
 
       },
       groupItemsByYear: function(selectItems) {

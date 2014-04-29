@@ -4,6 +4,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "variables";
 
 
+// .timeline-modal {
+
+// }
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -120,9 +124,9 @@ iframe {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+    // .container {
+    //     max-width: 730px;
+    // }
 
     /* Remove the padding we set earlier */
     .header,
@@ -204,4 +208,17 @@ circle {
   stroke-width: 6px;
 }
 
+.nvtooltip {
+  h3 {
+    padding: 2px 10px;
+  }
+}
 
+.timeline-modal {
+  margin-top: 100px;
+}
+
+.timeline-modal, .nvtooltip {
+  border-right: 5px solid $gray-dark;
+  border-bottom: 5px solid $gray-dark;
+}

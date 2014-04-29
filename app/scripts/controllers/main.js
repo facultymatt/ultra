@@ -12,6 +12,44 @@ angular.module('ultraApp')
     //     angularEvent.targetScope.$parent.$digest();
     // });
 
+    var activeTooltipObject = {};
+
+    $scope.activeToolTip = function(item) {
+      $scope.activeItem = item;
+    };
+
+    $scope.setActiveTag = function(tag) {
+      console.log(tag);
+      $scope.filterTerm = tag.toLowerCase();
+      setTimelineFromTag();
+    }
+
+    // $scope.getActiveTooltip = function() {
+    //   console.log('getting tooltip object');
+    //   return activeTooltipObject;
+    // }
+
+
+    $scope.toolTipContentFunction = function() {
+      return function(key, x, y, e, graph) {
+
+        var string = '';
+
+        string += '<h3>' + key + '</h3>';
+        string += '<p>' + y + ' projects in ' + x + '</p>';
+
+        return string;
+      };
+    };
+
+
+    // $scope.$on('tooltipShow.directive', function (event) {
+    //   var targetData = event.targetScope.data;
+    //   _.each(targetData, function(item) {
+    //     console.log(item);
+    //   })
+    // });
+
     //'legendClick', 'legendDblclick', 'legendMouseover'
     //stateChange
     $scope.$on('stateChange.legend.directive', function() {
@@ -37,7 +75,15 @@ angular.module('ultraApp')
     $scope.getColorForTag = function(tag) {
       tag = tag.toLowerCase();
       var color = {
-        color: '#' + colors[tag]
+        color: colors[tag]
+      };
+      return color;
+    };
+
+    $scope.getBgColorForTag = function(tag) {
+      tag = tag.toLowerCase();
+      var color = {
+        'background-color': colors[tag]
       };
       return color;
     };
@@ -76,6 +122,87 @@ angular.module('ultraApp')
       'physical prototype': '61B4CF'
     };
 
+    colors = {};
+
+    var colorCats = [{
+      type: "Core competency",
+      baseColor: ["F5B620", 'white'],
+      baseColorScheme: 'Greys',
+      tags: ['openframeworks', 'javascript']
+    }, {
+      type: "Technology",
+      baseColor: ["2D94CC", 'white'],
+      baseColorScheme: 'YlOrBr',
+      tags: ['angularjs', 'nodejs', 'jquery', 'html5', 'api', 'geolocation', 'mongodb', 'drupal', 'tdd', 'php']
+    }, {
+      type: "Areas of Interest",
+      baseColor: ["57544F", 'white'],
+      baseColorScheme: 'BuGn',
+      tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
+    }];
+
+
+    _.each(colorCats, function(cat) {
+
+      // get base color as tiny color object
+      //var tColor = chroma(cat.baseColor);
+      //var baseColor = chroma(cat.baseColor).hex();
+      console.log(cat.baseColor);
+      var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length+2], cat.tags.length);
+      //var scale = chroma.scale('YlOrBr').domain([0, 200], cat.tags.length);
+      console.log(scale.domain());
+
+      //YlOrBr
+
+      // generate monochromatic color scheme
+      //var monoColorScheme = tinycolor.monochromatic(tColor, cat.tags.length);
+      _.each(cat.tags, function(tagName, i) {
+        var newColor = scale(i);
+        colors[tagName] = newColor.hex();
+        console.log(tagName, ' ', colors[tagName]);
+      });
+    });
+
+    console.log(colors);
+
+    $scope.colorCats = colorCats;
+
+
+    /*
+    
+    // core competencies
+    openframeworks
+    javascript
+    
+    // technology
+    angularjs
+    nodejs
+    jquery
+    html5
+    api
+    geolocation
+    mongodb
+    drupal
+    php
+    tdd
+
+    // area of interest
+    presentation
+    demonstration
+    publication
+    website
+    exhibition
+    print
+    physical prototype
+    game
+    legos
+    apps
+
+    // jobs
+    !!! add tags for these genious! 
+
+    */
+
 
     /*
 
@@ -113,7 +240,11 @@ angular.module('ultraApp')
 
     $scope.colorFunction = function() {
       return function(d) {
-        return '#' + colors[d.key.toLowerCase()];
+        if (d.title) {
+          return '#333';
+        } else {
+          return colors[d.key.toLowerCase()];
+        }
       };
     };
     $scope.xFunction = function() {
@@ -146,9 +277,19 @@ angular.module('ultraApp')
       //   console.log($scope.viewTags.indexOf(item.key.toLowerCase()));
       //   return $scope.viewTags.indexOf(item.key.toLowerCase()) !== -1;
       // });
-
+      //console.log(newValue);
       $scope.exampleData = newValue;
+    });
 
+    $scope.allProjects = timeline.getAllProjectsForTimeline();
+    $scope.$watch('allProjects', function(newValue) {
+      //console.log(newValue);
+      $scope.projectData = newValue;
+
+      // initial setting of lines will only happen when data first loads
+      if ($routeParams.tag) {
+        setTimelineFromTag();
+      }
     });
 
     // tag filtering
@@ -160,25 +301,28 @@ angular.module('ultraApp')
     // });
 
     $scope.updateTimelineWithTypeaheadValue = function() {
-      var filterTerm = $scope.filterTerm.toLowerCase();
-      console.log('filterTerm', filterTerm);
+      setTimelineFromTag();
+    };
 
+    function setTimelineFromTag() {
+      var filterTerm = $scope.filterTerm.toLowerCase();
       _.each($scope.exampleData, function(data) {
         var dataKey = data.key.toLowerCase();
-        if (dataKey === filterTerm) {
-          console.log('enable ' + dataKey);
+        if (filterTerm === '') {
+          data.disabled = false;
+          return;
+        } else if (dataKey === filterTerm) {
+          //console.log('enable ' + dataKey);
           data.disabled = false;
         } else {
-          console.log('disable ' + dataKey);
+          //console.log('disable ' + dataKey);
           data.disabled = true;
         }
       });
-
       $timeout(function() {
         $scope.$apply();
       }, 0);
-
-    };
+    }
 
     $scope.$watch('filterTerm', function(newValue) {
 
@@ -199,6 +343,7 @@ angular.module('ultraApp')
       if (newValue !== '') {
         $location.search('tag', newValue);
       } else {
+        setTimelineFromTag();
         $location.search({});
       }
 
