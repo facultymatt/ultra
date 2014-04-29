@@ -1,29 +1,115 @@
 'use strict';
 
-angular
-  .module('ultraApp')
-  .factory('timelineData', function() {
+/*
+{
+  disabled: false,
+  year: 20,
+  tags: [],
+  title: "",
+  desc: ""
+}
 
-    /*
-    {
-      disabled: false,
-      year: 20,
-      tags: [],
-      title: "",
-      desc: ""
+// faculty website, angularjs
+// Instagram clock? 
+// Portfolio share? 
+// Gridster arrange
+// http://www.shakingthrough.com/
+// Liberty resources? 
+// Info graphics galore!
+
+// Instagram clock? 
+// Portfolio share? 
+// Gridster arrange
+// angular Unsaved Changes
+// http://www.shakingthrough.com/
+// Liberty resources? 
+// Info graphics galore! 
+
+*/
+
+angular.module('ultraApp')
+  .service('Projects', function Projects($q, Tags) {
+    // AngularJS will instantiate a singleton by calling "new" on this function
+    // this means that changing an value will change it across the app
+    // thus simulating "persisting" to a backend
+    // although this doesn't quite happen since we are using defer
+    
+    var projects = [];
+
+    // groups items by year given array of items using _.groupBy()
+    // BUT returns in a more usable format where 
+    // year = year and items = array of projects for that year
+    function groupItemsByYear(selectItems) {
+      var grouped = _.groupBy(selectItems, 'year');
+      return _.map(grouped, function(items, key) {
+        return {
+          year: key,
+          items: items
+        };
+      });
+    };
+
+    // mock async all call
+    // starting with this pattern allows seamless transition to
+    // database when
+
+    // get all projects
+    this.getAll = function() {
+      var delay = $q.defer();
+      delay.resolve(projects);
+      return delay.promise;
+    };
+
+    // gets range of years in project
+    this.getTimeRange = function() {
+      return _.unique(_.pluck(projects, 'year')).sort();
     }
 
-    // faculty website, angularjs
-    // Instagram clock? 
-    // Portfolio share? 
-    // Gridster arrange
-    // http://www.shakingthrough.com/
-    // Liberty resources? 
-    // Info graphics galore!
+     // get all projects grouped by year
+    this.groupByYear = function(unGrouped) {
+      return groupItemsByYear(unGrouped);
+    };
 
-    */
+    // get all projects grouped by year
+    this.getByTag = function(tagArray) {
+      var delay = $q.defer();
 
-    return [{
+      // if no array is supplied send back all projects
+      if(tagArray === null || tagArray.length === 0) {
+        delay.resolve(projects);
+        return delay.promise;
+      }
+
+      // ensure we have array
+      if(angular.isArray(tagArray) !== true) {
+        tagArray = [tagArray];
+      }
+
+      // if user is passing object created with tag
+      // class, for example new Tag(), then pluck the slugs
+      if(tagArray[0].constructor.name === 'Tag') {
+        tagArray = _.pluck(tagArray, 'slug');
+      }
+
+      // ensure we have lowercase array
+      tagArray = _.map(tagArray, function(tag) {
+        return tag.toLowerCase();
+      });
+
+      // filter projects by tagArray
+      var byTag = _.where(projects, function(project) {
+        return _.find(project.tags, function(tag) {
+          return tagArray.indexOf(tag.slug) !== -1; 
+        });
+      });
+      
+      delay.resolve(byTag);
+      return delay.promise;
+    };
+
+    // project data
+    // this data would be returned from mongo in typical app
+    projects = [{
       disabled: false,
       year: 2014,
       tags: ['openFrameworks'],
@@ -238,7 +324,7 @@ angular
     }, {
       disabled: false,
       year: 2011,
-      tags: ['openFrameworks', 'physical prototype'],
+      tags: ['openFrameworks', 'prototype'],
       title: "PIXEL",
       desc: "PIXEL connects people through their eyes. Peer into the PIXEL and invite others to experience what you see. The PIXEL exposes exactly what you are looking at by tracking your eye movements. Tethering multiple PIXELs together creates a personal and intimate visual connection. Learn more at <a href='http://lookintopixel.com/'>lookintopixel.com</a> and <a href='http://mmworks.mattmillerart.com/work/pixel/'>project page</a>."
     }, {
@@ -353,11 +439,18 @@ angular
       desc: "Very first portfolio site and jquery project! How old school!"
     }];
 
-    // Instagram clock? 
-    // Portfolio share? 
-    // Gridster arrange
-    // angular Unsaved Changes
-    // http://www.shakingthrough.com/
-    // Liberty resources? 
-    // Info graphics galore! 
+    (function setup() {
+      _.each(projects, function(project, i) {
+        _.each(project.tags, function(tag, i) {
+          Tags.getOne(tag).then(function(response) {
+            project.tags[i] = response;  
+            // reverse association
+            if(response && response.projects) {
+              response.projects.push(project);
+            }
+          });
+        })
+      });
+    }());
+
   });

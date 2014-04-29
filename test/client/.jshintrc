@@ -26,9 +26,13 @@
     "beforeEach": false,
     "browser": false,
     "describe": false,
+    "ddescribe": false,
+    "xdescribe": false,
     "expect": false,
     "inject": false,
     "it": false,
+    "iit": false,
+    "xit": false,
     "jasmine": false,
     "spyOn": false
   }

@@ -11,12 +11,26 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'app/bower_components/jquery/dist/jquery.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/angular-marked/angular-marked.js',
+      'app/bower_components/lodash/dist/lodash.compat.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'app/bower_components/d3/d3.js',
+      'app/bower_components/nvd3/nv.d3.js',
+      'app/bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
+      'app/bower_components/angulartics/dist/angulartics-ga.min.js',
+      'app/bower_components/angulartics/dist/angulartics.min.js',
+      'app/bower_components/tinycolor/dist/tinycolor-min.js',
+      'app/bower_components/chroma-js/chroma.js',
+      'app/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+      'app/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js',
+
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/client/mock/**/*.js',
@@ -46,8 +60,10 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
+    // reporters
+    reporters: ['progress', 'osx'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
