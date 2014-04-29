@@ -217,6 +217,7 @@ circle {
 
 .timeline-modal {
   margin-top: 100px;
+  z-index: $zindex-modal;
 }
 
 .timeline-modal, .nvtooltip {
@@ -234,6 +235,10 @@ circle {
 
 .tag {
   margin-right: 5px;
+}
+
+.tag.label {
+  display: inline-block;
 }
 
 

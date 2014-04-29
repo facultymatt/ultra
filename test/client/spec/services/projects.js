@@ -15,8 +15,8 @@ describe('Service: Projects', function() {
     Projects.getAll().then(function(response) {
       all = response;
     });
-    Projects.getAllGroupedByYear().then(function(response) {
-      byYear = response;
+    Projects.getAll().then(function(response) {
+      byYear = Projects.groupByYear(response);
     });
     $timeout.flush();
 
@@ -37,7 +37,7 @@ describe('Service: Projects', function() {
       var byTag;
 
       beforeEach(function() {
-        Projects.getByTagGroupedByYear(['tdd']).then(function(response) {
+        Projects.getByTag(['tdd']).then(function(response) {
           byTag = response;
         });
         $timeout.flush();

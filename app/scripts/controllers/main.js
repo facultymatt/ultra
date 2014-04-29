@@ -4,10 +4,33 @@
 // values for d3 charts
 
 angular.module('ultraApp')
-  .controller('MainCtrl', function($scope, $http, $location, $routeParams, $analytics, $timeout, Projects, Tags) {
+  .controller('MainCtrl', function($scope, $http, $location, $routeParams, $analytics, $timeout, Projects, Tags, Timeline, Tag) {
 
-    $scope.matches = 1;
     $scope.activeTags = [];
+
+    // tag filtering
+    $scope.activeTagsString = $routeParams.tags || '';
+
+    if ($scope.activeTagsString !== '') {
+      var tags = $scope.activeTagsString.split(',');
+      _.each(tags, function(slug) {
+        Tags.getOne(slug).then(function(response) {
+          response.active = true;
+        });
+      });
+    }
+
+    $scope.$on('$locationChangeSuccess', function() {
+      console.log('$locationChangeSuccess');
+    });
+
+    $scope.$watch('activeTagsString', function(newValue) {
+      if (newValue !== '') {
+        $location.search('tags', newValue);
+      } else {
+        $location.search({});
+      }
+    });
 
     // tag groups display at top of page 
     // and let user click them to activate and deactivate
@@ -15,23 +38,42 @@ angular.module('ultraApp')
       $scope.tagGroups = response;
     });
 
+    // get all tags for showing on first load
+    Tags.getAll().then(function(response) {
+      $scope.allTags = response;
+    });
+
     // watch active tags and either get by those tags or
-    // get all projects if no tag exists. Note the getByTagGroupedByYear
+    // get all projects if no tag exists. Note the getByTag
     // method handles this logic for us so we only need to call
+    // to get by tag or all. Also note we must call groupByYear on the data
     $scope.$watch('activeTags', function(newValue) {
-      Projects.getByTagGroupedByYear(newValue).then(function(response) {
-        $scope.years = response;
+
+      // if we have active tags, use them to generate the timeline
+      // else we use all the tags
+      if (newValue && newValue.length) {
+        $scope.exampleData = Timeline.formatProjectTagsForTimeline(newValue, Projects.getTimeRange());
+      } else {
+        $scope.exampleData = Timeline.formatProjectTagsForTimeline($scope.allTags, Projects.getTimeRange());
+      }
+
+      // update project listing
+      Projects.getByTag(newValue).then(function(response) {
+        $scope.years = Projects.groupByYear(response);
       });
+
     });
 
     // changing a tags active property causes its setter to broadcast
+    // so we can hook into that here and get a new active tags array
     $scope.$on('tags.active.update', function() {
-       Tags.getActive().then(function(response) {
-          $scope.activeTags = response;
-       }) 
+      console.log('someone set active tags');
+      Tags.getActive().then(function(response) {
+        $scope.activeTags = response;
+        $scope.activeTagsString = _.pluck(response, 'slug').join(',');
+      });
     });
 
-  
 
     // ------------------------------
     // Tooltips
@@ -46,7 +88,7 @@ angular.module('ultraApp')
     var activeTimeout = null;
 
     $scope.cancelTimeout = function() {
-      $timeout.cancel(activeTimeout); 
+      $timeout.cancel(activeTimeout);
     }
 
     $scope.countDownToHide = function() {
@@ -56,142 +98,37 @@ angular.module('ultraApp')
       }, 1000);
     };
 
-    // // tooltips that show when use how
-    // $scope.toolTipContentFunction = function() {
-    //   return function(key, x, y, e, graph) {
-
-    //     var string = '';
-
-    //     string += '<h3>' + key + '</h3>';
-    //     string += '<p>' + y + ' projects in ' + x + '</p>';
-
-    //     return string;
-    //   };
-    // };
-
-
-    // // ------------------------------
-    // // Colors
-    // // ------------------------------
-
-    // var colors = {};
-
-    // var colorCats = [{
-    //   type: "Core competency",
-    //   baseColor: ["FFA900", 'FFCB00'],
-    //   baseColorScheme: 'Greys',
-    //   tags: ['openframeworks', 'javascript']
-    // }, {
-    //   type: "Technology",
-    //   baseColor: ["2D94CC", 'lightblue'],
-    //   baseColorScheme: 'YlOrBr',
-    //   tags: ['angularjs', 'nodejs', 'jquery', 'html5', 'api', 'geolocation', 'mongodb', 'drupal', 'tdd', 'php']
-    // }, {
-    //   type: "Areas of Interest",
-    //   baseColor: ["57544F", 'lightgray'],
-    //   baseColorScheme: 'BuGn',
-    //   tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
-    // }];
-
-
-    // // get color
-    // $scope.getColorForTag = function(tag) {
-    //   if(!tag) return {};
-    //   tag = tag.toLowerCase();
-    //   var color = {
-    //     color: colors[tag]
-    //   };
-    //   return color;
-    // };
-
-    // // get BG color
-    // // Todo refactor into same function
-    // $scope.getBgColorForTag = function(tag) {
-    //   tag = tag.toLowerCase();
-    //   var color = {
-    //     'background-color': colors[tag]
-    //   };
-    //   return color;
-    // };
-  
     // // ------------------------------
     // // Time line functions
     // // ------------------------------
 
-    // $scope.colorFunction = function() {
-    //   return function(d) {
-    //     if (d.title) {
-    //       return '#333';
-    //     } else {
-    //       return colors[d.key.toLowerCase()];
-    //     }
-    //   };
-    // };
+    $scope.colorFunction = function() {
+      return function(d) {
+        //console.log(d);
+        return d.color;
+      };
+    };
 
-    // $scope.xFunction = function() {
-    //   return function(d) {
-    //     return d.x;
-    //   };
-    // };
+    $scope.xFunction = function() {
+      return function(d) {
+        return d.x;
+      };
+    };
 
-    // $scope.yFunction = function() {
-    //   return function(d) {
-    //     return d.y;
-    //   };
-    // };
+    $scope.yFunction = function() {
+      return function(d) {
+        return d.y;
+      };
+    };
 
-    // // load data from service
-    // $scope.years = timeline.getAllGroupedByYear();
-    // $scope.tags = timeline.getTags();
-    // $scope.$watch('tags', function() {
-    //   $scope.colorCats = setTagColors();
-    // });
-    // $scope.tagsWithYearlyCount = timeline.getTagsWithYearlyCount();
-
-    // // quick and dirty to filter down all tags for the timeline
-    // // in future we can hook into the searching user is doing
-    // // or create groups of tags based on tech, type, etc. 
-    // $scope.$watch('tagsWithYearlyCount', function(newValue) {
-    //   $scope.allData = newValue;
-    // });
-
-    // // tag filtering
-    // $scope.filterTerm = $routeParams.tag || '';
-
-    // $scope.$on('$locationChangeSuccess', function() {
-    //   $scope.filterTerm = $routeParams.tag || '';
-    // });
-
-
-    // function setTimelineFromTag() {
-    //   var filterTerm = $scope.filterTerm.toLowerCase();
-    //   _.each($scope.exampleData, function(data) {
-    //     var dataKey = data.key.toLowerCase();
-    //     if (filterTerm === '') {
-    //       data.disabled = false;
-    //       return;
-    //     } else if (dataKey === filterTerm) {
-    //       //console.log('enable ' + dataKey);
-    //       data.disabled = false;
-    //     } else {
-    //       //console.log('disable ' + dataKey);
-    //       data.disabled = true;
-    //     }
-    //   });
-    //   $timeout(function() {
-    //     $scope.$apply();
-    //   }, 0);
-    // }
-
-    // $scope.$watch('filterTerm', function(newValue) {
-
-    //   if (newValue !== '') {
-    //     $location.search('tag', newValue);
-    //   } else {
-    //     setTimelineFromTag();
-    //     $location.search({});
-    //   }
-
-    // });
+    // tooltips that show when use how
+    $scope.toolTipContentFunction = function() {
+      return function(key, x, y, e, graph) {
+        var string = '';
+        string += '<h3>' + key + '</h3>';
+        string += '<p>' + y + ' projects in ' + x + '</p>';
+        return string;
+      };
+    };
 
   });

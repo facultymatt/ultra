@@ -60,20 +60,23 @@ angular.module('ultraApp')
       return delay.promise;
     };
 
-    // get all projects grouped by year
-    this.getAllGroupedByYear = function() {
-      var delay = $q.defer();
-      delay.resolve(groupItemsByYear(projects));
-      return delay.promise;
+    // gets range of years in project
+    this.getTimeRange = function() {
+      return _.unique(_.pluck(projects, 'year')).sort();
+    }
+
+     // get all projects grouped by year
+    this.groupByYear = function(unGrouped) {
+      return groupItemsByYear(unGrouped);
     };
 
     // get all projects grouped by year
-    this.getByTagGroupedByYear = function(tagArray) {
+    this.getByTag = function(tagArray) {
       var delay = $q.defer();
 
       // if no array is supplied send back all projects
       if(tagArray === null || tagArray.length === 0) {
-        delay.resolve(groupItemsByYear(projects));
+        delay.resolve(projects);
         return delay.promise;
       }
 
@@ -100,7 +103,7 @@ angular.module('ultraApp')
         });
       });
       
-      delay.resolve(groupItemsByYear(byTag));
+      delay.resolve(byTag);
       return delay.promise;
     };
 
@@ -441,10 +444,13 @@ angular.module('ultraApp')
         _.each(project.tags, function(tag, i) {
           Tags.getOne(tag).then(function(response) {
             project.tags[i] = response;  
+            // reverse association
+            if(response && response.projects) {
+              response.projects.push(project);
+            }
           });
         })
       });
     }());
-
 
   });
