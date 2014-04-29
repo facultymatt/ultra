@@ -1,27 +1,3 @@
-<!-- <div class="jumbotron">
-  <h1>Design and develop!</h1>
-</div> -->
-
-<div class="row">
-  <div class="col-xs-12 ">
-    <nvd3-line-chart
-        data="exampleData"
-        x="xFunction()"
-        y="yFunction()"
-        showXAxis="true"
-        showYAxis="false"
-        tooltips="true"
-        interpolate="basis"
-        height="320"
-        useInteractiveGuideLine="false"
-        showLegend="true"
-        objectEquality="true"
-        color="colorFunction()"
-        legendColor="colorFunction()">
-    </nvd3-line-chart>
-  </div>
-</div>
-
 <!-- <div class="row">
   <div class="col-xs-12 ">
     <div ng-repeat="item in tags | orderBy:'count':true ">
@@ -29,61 +5,142 @@
     </div>
   </div>
 </div> -->
+<!-- 
+<div class="row">
+  <div class="col-xs-3">
+    <div class="page-header">
+        <h2>Timeline</h2>
+        <p>My work over the years</p>
+    </div>
+  </div>
+</div>
+ -->
 
 <div class="row">
-  <div class="col-xs-12 select-history">
 
-    <div class="page-header">
-      <h2>Timeline</h2>
-      <p>My work over the years</p>
+    <div class="col-xs-3 select-history" ng-mouseleave="countDownToHide()">       
+
+        <div class="col-sx-4">
+<!-- 
+            <bootstrap-tagsinput
+              ng-model="cities"
+              typeahead-source="queryCities"
+              tagclass="getTagClass"
+              itemvalue="value"
+              itemtext="text">
+            </bootstrap-tagsinput> -->
+
+            <input type="text" class="form-control " ng-model="filterTerm" placeholder="Search project tags" typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8" typeahead-on-select="updateTimelineWithTypeaheadValue($viewValue)" />
+
+            <small>Try 
+            <a ng-click="filterTerm='angularjs'">angularjs</a>,
+            <a ng-click="filterTerm='openframeworks'">openFrameworks</a>, or
+            <a ng-click="filterTerm='lego'">LEGO</a>.
+            </small>
+        </div>
+
+        <hr />
+
+        <div ng-show="matches > 0" ng-repeat="year in years | orderBy:'year':true ">
+
+            <h4>{{year.year}}</h4>
+
+            <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-show="filterTerm == '' || item.match == true" ng-repeat="item in year.items">
+                <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
+
+                <h5 ng-mouseenter="setActiveProject(item)">{{item.title}}</h5>
+
+                <span 
+                ng-style="getBgColorForTag(tag)"
+                class="tiny-circle" 
+                ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+                </span>
+
+                <!-- <p class="desc" ng-bind-html="item.desc"></p> -->
+                <!-- <p class="tags">
+                    <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+                        {{tag}}
+                        <span ng-if="!$last">,</span>
+                    </em>
+                </p> -->
+            </div>
+
+            <hr ng-if="!$last" />
+
+        </div>
+
+        <div ng-show="matches == 0">
+            <p>
+                <br />
+                <br />Do you want to collaborate on {{filterTerm}}? Drop me a line!
+            </p>
+        </div>
+
     </div>
+    <div class="col-xs-9 col-xs-offset-3 affix">
+        
+        <div class="row">
+            <div class="timeline-modal col-xs-4 affix" ng-show="activeItem" ng-mouseenter="cancelTimeout()" ng-mouseleave="countDownToHide()">
+                <p ng-click="activeItem = null">&times;</p>
+                <h2>{{activeItem.title}}</h2>
+                <p ng-bind-html="activeItem.desc"></p>
+            </div>
+        </div>
 
-    <div class="col-sx-4">
-      <input 
-       type="text" 
-       class="form-control " 
-       ng-model="filterTerm" 
-       placeholder="Search project tags"
-       typeahead="tag.tag for tag in tags | filter:$viewValue | limitTo:8"
-       typeahead-on-select="updateTimelineWithTypeaheadValue($viewValue)" />
+        <div class="row">
+            <div class="col-xs-12">
+                <p ng-repeat="item in colorCats">
+                {{item.type}}
+                <span class="tag label"
+                    ng-click="setActiveTag(tag)"
+                    ng-repeat="tag in item.tags" 
+                    ng-style="getBgColorForTag(tag)">
+                    {{tag}}
+                </span>
+                </p>
+            </div>
+        </div>
+
+        <!-- <nvd3-line-chart 
+         id="project_chart"
+         data="projectData" 
+         x="xFunction()" 
+         y="yFunction()" 
+         showXAxis="true" 
+         showYAxis="false"
+         interactive="true"
+         tooltips="true" 
+         height="300" 
+         useInteractiveGuideLine="false" 
+         tooltipcontent="toolTipContentFunction()"
+         showLegend="false" 
+         objectEquality="true">
+         <svg></svg>
+        </nvd3-line-chart> -->
+
+        <nvd3-line-chart 
+         id="timeline_chart"
+         data="exampleData" 
+         x="xFunction()" 
+         y="yFunction()" 
+         showXAxis="true" 
+         showYAxis="false"
+         interactive="true"
+         tooltips="true" 
+         interpolate="basis" 
+         height="500" 
+         useInteractiveGuideLine="false" 
+         tooltipcontent="toolTipContentFunction()"
+         showLegend="false" 
+         objectEquality="true" 
+         color="colorFunction()" 
+         legendColor="colorFunction()">
+         <svg></svg>
+        </nvd3-line-chart>
     </div>
-
-    <hr />
-
-    <div ng-show="matches > 0" ng-repeat="year in years | orderBy:'year':true ">
-
-      <h4>{{year.year}}</h4>
-
-      <div 
-       class="timeline-item"
-       ng-class="{'being-filtered' : filterTerm != ''}"
-       ng-show="filterTerm == '' || item.match == true" 
-       ng-repeat="item in year.items">
-        <h5>{{item.title}}</h5>
-        <p ng-bind-html="item.desc"></p>
-        <p class="tags">
-            <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
-                {{tag}}<span ng-if="!$last">, </span> 
-            </em>
-        </p>
-      </div>
-
-      <hr ng-if="!$last" />
-
-    </div>
-
-    <div ng-show="matches == 0">
-      <p>
-        <br />
-        <br />
-        Do you want to collaborate on {{filterTerm}}? Drop me a line!
-      </p>
-    </div>
-
-  </div>
 </div>
 
 
 <div class="footer">
-  <p>Copyright 1999-2014 Matt Miller</p>
+    <p>Copyright 1999-2014 Matt Miller</p>
 </div>

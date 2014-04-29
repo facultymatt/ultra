@@ -6,116 +6,147 @@
 angular.module('ultraApp')
   .controller('MainCtrl', function($scope, $http, timeline, $location, $routeParams, $analytics, $timeout) {
 
-    // $scope.$on('stateChange.directive', function(angularEvent, event){
-    //     console.log('elementClick', arguments);
-    //     angularEvent.targetScope.$parent.event = event;
-    //     angularEvent.targetScope.$parent.$digest();
-    // });
+    // ------------------------------
+    // Tags
+    // ------------------------------
 
-    //'legendClick', 'legendDblclick', 'legendMouseover'
-    //stateChange
-    $scope.$on('stateChange.legend.directive', function() {
-      //console.log('stateChange.legend.directive', event, d);
-    });
-    $scope.$on('legendClick.directive', function(d, i) {
-      var filterTerm = i.key.toLowerCase();
-      $analytics.eventTrack('legendClick.directive', {
-        category: 'key',
-        label: filterTerm
-      });
-    });
-    $scope.$on('legendDblclick.directive', function(d, i) {
-      var filterTerm = i.key.toLowerCase();
-      $scope.filterTerm = filterTerm;
-      $analytics.eventTrack('legendDblclick.directive', {
-        category: 'chart',
-        label: filterTerm
-      });
-      $scope.$apply();
-    });
+    $scope.cities = [{
+      "value": 1,
+      "text": "Amsterdam",
+      "continent": "Europe"
+    }];
 
+    // returns class given tag name
+    // @todo needs to support tag style
+    $scope.getTagClass = function(city) {
+      return 'badge badge-info';
+    };
+
+    // set active tag
+    // @todo support tag array
+    $scope.setActiveTag = function(tag) {
+      $scope.filterTerm = tag.toLowerCase();
+      setTimelineFromTag();
+    }
+
+
+    // ------------------------------
+    // Tooltips
+    // ------------------------------
+
+    // triggers the project "tooltip" to open
+    $scope.setActiveProject = function(item) {
+      $timeout.cancel(activeTimeout);
+      $scope.activeItem = item;
+    };
+
+    var activeTimeout = null;
+
+    $scope.cancelTimeout = function() {
+      $timeout.cancel(activeTimeout); 
+    }
+
+    $scope.countDownToHide = function() {
+      activeTimeout = $timeout(function() {
+        $timeout.cancel(activeTimeout);
+        $scope.activeItem = null;
+      }, 1000);
+    };
+
+    // tooltips that show when use how
+    $scope.toolTipContentFunction = function() {
+      return function(key, x, y, e, graph) {
+
+        var string = '';
+
+        string += '<h3>' + key + '</h3>';
+        string += '<p>' + y + ' projects in ' + x + '</p>';
+
+        return string;
+      };
+    };
+
+
+    // ------------------------------
+    // Colors
+    // ------------------------------
+
+    var colors = {};
+
+    var colorCats = [{
+      type: "Core competency",
+      baseColor: ["FFA900", 'FFCB00'],
+      baseColorScheme: 'Greys',
+      tags: ['openframeworks', 'javascript']
+    }, {
+      type: "Technology",
+      baseColor: ["2D94CC", 'lightblue'],
+      baseColorScheme: 'YlOrBr',
+      tags: ['angularjs', 'nodejs', 'jquery', 'html5', 'api', 'geolocation', 'mongodb', 'drupal', 'tdd', 'php']
+    }, {
+      type: "Areas of Interest",
+      baseColor: ["57544F", 'lightgray'],
+      baseColorScheme: 'BuGn',
+      tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
+    }];
+
+    // uses the colors array and tags
+    function setTagColors() {
+      _.each(colorCats, function(cat) {
+
+        var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length], cat.tags.length);
+
+        _.each(cat.tags, function(tagName, i) {
+          var newColor = scale(i);
+
+          var theTag = _.where($scope.tags, function(tag) {
+            return tag.tag.toLowerCase() === tagName;
+          });
+
+          theTag.baseColorStarter = scale(0).hex();
+
+          colors[tagName] = newColor.hex();
+        });
+      });
+      return colorCats;
+    }
+
+    
+
+    // get color
     $scope.getColorForTag = function(tag) {
+      if(!tag) return {};
       tag = tag.toLowerCase();
       var color = {
-        color: '#' + colors[tag]
+        color: colors[tag]
       };
       return color;
     };
 
-    // $scope.$on('legendMouseover.directive', function (d, i) {
-    //   console.log('legendMouseover.directive', d, i);
-    // });
-
-    // we need some better colors!
-
-    var colors = {
-      openframeworks: 'FF8300',
-      javascript: 'BF7930',
-      angularjs: 'A65500',
-      nodejs: 'FFA240',
-      jquery: 'FFBB73',
-
-      tdd: 'FFB400',
-      html5: 'BF9530',
-      api: 'A67500',
-      geolocation: 'FFC740',
-      mongodb: 'FFD673',
-
-      drupal: 'FF2800',
-      php: 'BF4630',
-
-      presentation: 'A61A00',
-      demonstration: 'FF5D40',
-      publication: 'FF8973',
-
-      game: '06799F',
-      website: '216278',
-      exhibition: 'A61A00',
-      print: '024E68',
-      lego: '3AAACF',
-      'physical prototype': '61B4CF'
+    // get BG color
+    // Todo refactor into same function
+    $scope.getBgColorForTag = function(tag) {
+      tag = tag.toLowerCase();
+      var color = {
+        'background-color': colors[tag]
+      };
+      return color;
     };
-
-
-    /*
-
-    FF8300  BF7930  A65500  FFA240  FFBB73
-    Secondary Color A:
-    FFB400  BF9530  A67500  FFC740  FFD673
-    Secondary Color B:
-    FF2800  BF4630  A61A00  FF5D40  FF8973
-    Complementary Color:
-    06799F  216278  024E68  3AAACF  61B4CF
-
-    openframeworks
-    javascript
-    angularjs
-    tdd
-    nodejs
-    jquery
-    html5
-    api
-    geolocation
-    mongodb
-    drupal
-    php
-
-    presentation
-    demonstration
-    publication
-    game
-    website
-    exhibition
-    print
-    legos
-    physical prototype
-    */
+  
+    // ------------------------------
+    // Time line functions
+    // ------------------------------
 
     $scope.colorFunction = function() {
       return function(d) {
-        return '#' + colors[d.key.toLowerCase()];
+        if (d.title) {
+          return '#333';
+        } else {
+          return colors[d.key.toLowerCase()];
+        }
       };
     };
+
     $scope.xFunction = function() {
       return function(d) {
         return d.x;
@@ -131,6 +162,9 @@ angular.module('ultraApp')
     // load data from service
     $scope.years = timeline.getAllItemsGroupedByYear();
     $scope.tags = timeline.getTags();
+    $scope.$watch('tags', function() {
+      $scope.colorCats = setTagColors();
+    });
     $scope.tagsWithYearlyCount = timeline.getTagsWithYearlyCount();
 
     // quick and dirty to filter down all tags for the timeline
@@ -146,9 +180,19 @@ angular.module('ultraApp')
       //   console.log($scope.viewTags.indexOf(item.key.toLowerCase()));
       //   return $scope.viewTags.indexOf(item.key.toLowerCase()) !== -1;
       // });
-
+      //console.log(newValue);
       $scope.exampleData = newValue;
+    });
 
+    $scope.allProjects = timeline.getAllProjectsForTimeline();
+    $scope.$watch('allProjects', function(newValue) {
+      //console.log(newValue);
+      $scope.projectData = newValue;
+
+      // initial setting of lines will only happen when data first loads
+      if ($routeParams.tag) {
+        setTimelineFromTag();
+      }
     });
 
     // tag filtering
@@ -160,25 +204,28 @@ angular.module('ultraApp')
     // });
 
     $scope.updateTimelineWithTypeaheadValue = function() {
-      var filterTerm = $scope.filterTerm.toLowerCase();
-      console.log('filterTerm', filterTerm);
+      setTimelineFromTag();
+    };
 
+    function setTimelineFromTag() {
+      var filterTerm = $scope.filterTerm.toLowerCase();
       _.each($scope.exampleData, function(data) {
         var dataKey = data.key.toLowerCase();
-        if (dataKey === filterTerm) {
-          console.log('enable ' + dataKey);
+        if (filterTerm === '') {
+          data.disabled = false;
+          return;
+        } else if (dataKey === filterTerm) {
+          //console.log('enable ' + dataKey);
           data.disabled = false;
         } else {
-          console.log('disable ' + dataKey);
+          //console.log('disable ' + dataKey);
           data.disabled = true;
         }
       });
-
       $timeout(function() {
         $scope.$apply();
       }, 0);
-
-    };
+    }
 
     $scope.$watch('filterTerm', function(newValue) {
 
@@ -199,6 +246,7 @@ angular.module('ultraApp')
       if (newValue !== '') {
         $location.search('tag', newValue);
       } else {
+        setTimelineFromTag();
         $location.search({});
       }
 

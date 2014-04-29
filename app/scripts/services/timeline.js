@@ -4,30 +4,7 @@ angular
   .module('ultraApp')
   .factory('timeline', ['timelineData', function(items) {
 
-    /*
-    openframeworks
-    javascript
-    angularjs
-    tdd
-    nodejs
-    jquery
-    html5
-    api
-    geolocation
-    mongodb
-    drupal
-    php
-  
-    presentation
-    demonstration
-    publication
-    game
-    website
-    exhibition
-    print
-    legos
-    physical prototype
-    */
+    
 
     return {
       // specific data format for d3 timeline
@@ -68,9 +45,23 @@ angular
           };
         });
 
-        console.log(returnData);
-
         return returnData;
+
+      },
+      getAllProjectsForTimeline: function() {
+
+        var returnData = [];
+
+        _.each(items, function(project, i) {
+          project.key = project.title;
+          //project.disabled = true;
+          project.values = [{
+            x: project.year,
+            y: i
+          }];
+        });
+
+        return items;
 
       },
       groupItemsByYear: function(selectItems) {
