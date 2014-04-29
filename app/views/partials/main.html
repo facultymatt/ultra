@@ -22,9 +22,15 @@
 
         <div class="col-xs-3 select-history" ng-mouseleave="countDownToHide()">       
 
-            <div ng-include=" 'partials/timeline/tags_input.html' "></div>
+            <!-- <span class="tag"
+                ng-repeat="tag in activeTags" 
+                ng-click="tag.active = !tag.active"
+                ng-style="{'background-color' : tag.color}">
+                {{tag.name}}
+                <span ng-show="tag.active"> &times;</span>
+            </span> -->
 
-            <hr />
+            <!-- <div ng-include=" 'partials/timeline/tags_input.html' "></div> -->
 
             <div ng-include=" 'partials/timeline/timeline_items_list.html' "></div>
 
@@ -45,13 +51,14 @@
             <div class="row">
                 
                 <div class="col-xs-12">
-                    <p ng-repeat="item in colorCats">
-                    {{item.type}}
+                    <p ng-repeat="group in tagGroups">
+                    {{group.name}}
                     <span class="tag label"
-                        ng-click="setActiveTag(tag)"
-                        ng-repeat="tag in item.tags" 
-                        ng-style="getBgColorForTag(tag)">
-                        {{tag}}
+                        ng-repeat="tag in group.tags" 
+                        ng-click="tag.active = !tag.active"
+                        ng-style="{'background-color' : tag.color}">
+                        {{tag.name}}
+                        <span ng-show="tag.active"> &times;</span>
                     </span>
                     </p>
                 </div>

@@ -2,15 +2,15 @@
 
     <h4>{{year.year}}</h4>
 
-    <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-show="filterTerm == '' || item.match == true" ng-repeat="item in year.items">
+    <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-repeat="item in year.items">
         <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
 
         <h5 ng-mouseenter="setActiveProject(item)">{{item.title}}</h5>
 
         <span 
-        ng-style="getBgColorForTag(tag)"
-        class="tiny-circle" 
-        ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+         class="tiny-circle" 
+         ng-repeat="tag in item.tags" 
+         ng-style="{'background-color': tag.color}">
         </span>
 
         <!-- <p class="desc" ng-bind-html="item.desc"></p> -->

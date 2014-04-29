@@ -1,6 +1,6 @@
 'use strict';
 
-ddescribe('Service: Tags', function() {
+describe('Service: Tags', function() {
 
   // load the service's module
   beforeEach(module('ultraApp'));
@@ -57,6 +57,7 @@ ddescribe('Service: Tags', function() {
     });
 
     it('should set baseColor on group', function() {
+      console.log(groups[0]);
       expect(groups[0].baseColor).toBeDefined();
     });
 
@@ -69,32 +70,31 @@ ddescribe('Service: Tags', function() {
     });
 
   });
-  describe('getting colors', function() {
+  
+
+  describe('setting and getting active tags', function() {
     
-    it('should get hex color by tag slug', function() {
-      var color = Tags.getColorForTag('tdd');
-      expect(color.slice(0,1)).toBe('#');
+    it('sets tag active', function() {
+      tags[0].active = true;
+      Tags.getAll().then(function(response) {
+        one = response[0];
+      });
+      $timeout.flush();
+      expect(one.active).toBe(true);
     });
 
-    it('should get base hex color by group slug', function() {
-      var baseColor = Tags.getColorForGroup('technology');
-      var color = Tags.getBaseColorForTag('tdd');
-      expect(color).toBe(baseColor);
+    it('gets all active tags', function() {
+      var activeTags;
+      tags[0].active = true;
+      tags[1].active = true;
+      tags[2].active = true;
+      Tags.getActive().then(function(response) {
+        activeTags = response;
+      });
+      $timeout.flush();
+      expect(activeTags.length).toBe(3);
     });
 
   });
-
-  // describe('setting and getting active tags', function() {
-    
-  //   it('sets tag active', function() {
-  //     Tags.activateTag('tdd');
-  //     Tags.getOne('tdd').then(function(response) {
-  //       one = response;
-  //     });
-  //     $timeout.flush();
-  //     expect(one.active).toBe(true);
-  //   });
-
-  // });
 
 });

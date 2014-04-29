@@ -28,7 +28,7 @@
 */
 
 angular.module('ultraApp')
-  .service('Projects', function Projects($q) {
+  .service('Projects', function Projects($q, Tags) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     // this means that changing an value will change it across the app
     // thus simulating "persisting" to a backend
@@ -64,6 +64,43 @@ angular.module('ultraApp')
     this.getAllGroupedByYear = function() {
       var delay = $q.defer();
       delay.resolve(groupItemsByYear(projects));
+      return delay.promise;
+    };
+
+    // get all projects grouped by year
+    this.getByTagGroupedByYear = function(tagArray) {
+      var delay = $q.defer();
+
+      // if no array is supplied send back all projects
+      if(tagArray === null || tagArray.length === 0) {
+        delay.resolve(groupItemsByYear(projects));
+        return delay.promise;
+      }
+
+      // ensure we have array
+      if(angular.isArray(tagArray) !== true) {
+        tagArray = [tagArray];
+      }
+
+      // if user is passing object created with tag
+      // class, for example new Tag(), then pluck the slugs
+      if(tagArray[0].constructor.name === 'Tag') {
+        tagArray = _.pluck(tagArray, 'slug');
+      }
+
+      // ensure we have lowercase array
+      tagArray = _.map(tagArray, function(tag) {
+        return tag.toLowerCase();
+      });
+
+      // filter projects by tagArray
+      var byTag = _.where(projects, function(project) {
+        return _.find(project.tags, function(tag) {
+          return tagArray.indexOf(tag.slug) !== -1; 
+        });
+      });
+      
+      delay.resolve(groupItemsByYear(byTag));
       return delay.promise;
     };
 
@@ -284,7 +321,7 @@ angular.module('ultraApp')
     }, {
       disabled: false,
       year: 2011,
-      tags: ['openFrameworks', 'physical prototype'],
+      tags: ['openFrameworks', 'prototype'],
       title: "PIXEL",
       desc: "PIXEL connects people through their eyes. Peer into the PIXEL and invite others to experience what you see. The PIXEL exposes exactly what you are looking at by tracking your eye movements. Tethering multiple PIXELs together creates a personal and intimate visual connection. Learn more at <a href='http://lookintopixel.com/'>lookintopixel.com</a> and <a href='http://mmworks.mattmillerart.com/work/pixel/'>project page</a>."
     }, {
@@ -398,5 +435,16 @@ angular.module('ultraApp')
       title: "First portfolio site",
       desc: "Very first portfolio site and jquery project! How old school!"
     }];
+
+    (function setup() {
+      _.each(projects, function(project, i) {
+        _.each(project.tags, function(tag, i) {
+          Tags.getOne(tag).then(function(response) {
+            project.tags[i] = response;  
+          });
+        })
+      });
+    }());
+
 
   });
