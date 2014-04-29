@@ -36,7 +36,21 @@ angular.module('ultraApp')
 
     // triggers the project "tooltip" to open
     $scope.setActiveProject = function(item) {
+      $timeout.cancel(activeTimeout);
       $scope.activeItem = item;
+    };
+
+    var activeTimeout = null;
+
+    $scope.cancelTimeout = function() {
+      $timeout.cancel(activeTimeout); 
+    }
+
+    $scope.countDownToHide = function() {
+      activeTimeout = $timeout(function() {
+        $timeout.cancel(activeTimeout);
+        $scope.activeItem = null;
+      }, 1000);
     };
 
     // tooltips that show when use how
@@ -61,17 +75,17 @@ angular.module('ultraApp')
 
     var colorCats = [{
       type: "Core competency",
-      baseColor: ["F5B620", 'white'],
+      baseColor: ["FFA900", 'FFCB00'],
       baseColorScheme: 'Greys',
       tags: ['openframeworks', 'javascript']
     }, {
       type: "Technology",
-      baseColor: ["2D94CC", 'white'],
+      baseColor: ["2D94CC", 'lightblue'],
       baseColorScheme: 'YlOrBr',
       tags: ['angularjs', 'nodejs', 'jquery', 'html5', 'api', 'geolocation', 'mongodb', 'drupal', 'tdd', 'php']
     }, {
       type: "Areas of Interest",
-      baseColor: ["57544F", 'white'],
+      baseColor: ["57544F", 'lightgray'],
       baseColorScheme: 'BuGn',
       tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'physical prototype', 'game', 'lego', 'apps']
     }];
@@ -80,20 +94,28 @@ angular.module('ultraApp')
     function setTagColors() {
       _.each(colorCats, function(cat) {
 
-        var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length + 2], cat.tags.length);
+        var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length], cat.tags.length);
 
         _.each(cat.tags, function(tagName, i) {
           var newColor = scale(i);
+
+          var theTag = _.where($scope.tags, function(tag) {
+            return tag.tag.toLowerCase() === tagName;
+          });
+
+          theTag.baseColorStarter = scale(0).hex();
+
           colors[tagName] = newColor.hex();
         });
       });
       return colorCats;
     }
 
-    $scope.colorCats = setTagColors();
+    
 
     // get color
     $scope.getColorForTag = function(tag) {
+      if(!tag) return {};
       tag = tag.toLowerCase();
       var color = {
         color: colors[tag]
@@ -124,7 +146,7 @@ angular.module('ultraApp')
         }
       };
     };
-    
+
     $scope.xFunction = function() {
       return function(d) {
         return d.x;
@@ -140,6 +162,9 @@ angular.module('ultraApp')
     // load data from service
     $scope.years = timeline.getAllItemsGroupedByYear();
     $scope.tags = timeline.getTags();
+    $scope.$watch('tags', function() {
+      $scope.colorCats = setTagColors();
+    });
     $scope.tagsWithYearlyCount = timeline.getTagsWithYearlyCount();
 
     // quick and dirty to filter down all tags for the timeline

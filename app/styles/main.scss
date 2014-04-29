@@ -86,7 +86,7 @@ body {
 .select-history {
     h5 {
         margin-bottom: 2px;
-        color: #E07F2F;
+        //color: #E07F2F;
     }
 
     a {
@@ -222,6 +222,14 @@ circle {
 .timeline-modal, .nvtooltip {
   border-right: 5px solid $gray-dark;
   border-bottom: 5px solid $gray-dark;
+}
+
+.tiny-circle {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 

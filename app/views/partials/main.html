@@ -18,7 +18,7 @@
 
 <div class="row">
 
-    <div class="col-xs-3 select-history">       
+    <div class="col-xs-3 select-history" ng-mouseleave="countDownToHide()">       
 
         <div class="col-sx-4">
 <!-- 
@@ -46,7 +46,16 @@
             <h4>{{year.year}}</h4>
 
             <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-show="filterTerm == '' || item.match == true" ng-repeat="item in year.items">
+                <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
+
                 <h5 ng-mouseenter="setActiveProject(item)">{{item.title}}</h5>
+
+                <span 
+                ng-style="getBgColorForTag(tag)"
+                class="tiny-circle" 
+                ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
+                </span>
+
                 <!-- <p class="desc" ng-bind-html="item.desc"></p> -->
                 <!-- <p class="tags">
                     <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
@@ -71,7 +80,7 @@
     <div class="col-xs-9 col-xs-offset-3 affix">
         
         <div class="row">
-            <div class="timeline-modal col-xs-4 affix" ng-show="activeItem">
+            <div class="timeline-modal col-xs-4 affix" ng-show="activeItem" ng-mouseenter="cancelTimeout()" ng-mouseleave="countDownToHide()">
                 <p ng-click="activeItem = null">&times;</p>
                 <h2>{{activeItem.title}}</h2>
                 <p ng-bind-html="activeItem.desc"></p>
