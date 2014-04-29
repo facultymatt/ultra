@@ -19,7 +19,6 @@ angular.module('ultraApp')
     };
 
     $scope.setActiveTag = function(tag) {
-      console.log(tag);
       $scope.filterTerm = tag.toLowerCase();
       setTimelineFromTag();
     }
@@ -144,26 +143,13 @@ angular.module('ultraApp')
 
     _.each(colorCats, function(cat) {
 
-      // get base color as tiny color object
-      //var tColor = chroma(cat.baseColor);
-      //var baseColor = chroma(cat.baseColor).hex();
-      console.log(cat.baseColor);
-      var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length+2], cat.tags.length);
-      //var scale = chroma.scale('YlOrBr').domain([0, 200], cat.tags.length);
-      console.log(scale.domain());
+      var scale = chroma.scale(cat.baseColor).domain([0, cat.tags.length + 2], cat.tags.length);
 
-      //YlOrBr
-
-      // generate monochromatic color scheme
-      //var monoColorScheme = tinycolor.monochromatic(tColor, cat.tags.length);
       _.each(cat.tags, function(tagName, i) {
         var newColor = scale(i);
         colors[tagName] = newColor.hex();
-        console.log(tagName, ' ', colors[tagName]);
       });
     });
-
-    console.log(colors);
 
     $scope.colorCats = colorCats;
 

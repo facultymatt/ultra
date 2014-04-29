@@ -4,41 +4,7 @@ angular
   .module('ultraApp')
   .factory('timeline', ['timelineData', function(items) {
 
-    /*
     
-    // core competencies
-    openframeworks
-    javascript
-    
-    // technology
-    angularjs
-    nodejs
-    jquery
-    html5
-    api
-    geolocation
-    mongodb
-    drupal
-    php
-    tdd
-
-    // area of interest
-    presentation
-    demonstration
-    publication
-    website
-    exhibition
-    print
-    physical prototype
-    game
-    legos
-    apps
-
-    // jobs
-    !!! add tags for these genious! 
-
-
-    */
 
     return {
       // specific data format for d3 timeline
@@ -94,8 +60,6 @@ angular
             y: i
           }];
         });
-
-        console.log(items[0]);
 
         return items;
 
