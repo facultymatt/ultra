@@ -10,7 +10,7 @@ angular.module('ultraApp')
       // @note ideally this would be a provider so we could 
       // more easily inject it into tests but for now it works fine :)
       function Tag(options) {
-
+        
         var _this = this;
 
         _this.name = options.name || '';

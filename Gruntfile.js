@@ -58,10 +58,10 @@ module.exports = function (grunt) {
         files: ['test/server/{,*/}*.js'],
         tasks: ['env:test', 'mochaTest']
       },
-      jsTest: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/client/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
+      // jsTest: {
+      //   files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/client/spec/{,*/}*.js'],
+      //   tasks: ['newer:jshint:test', 'karma']
+      // },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
@@ -428,6 +428,10 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      auto: {
+        configFile: 'karma.conf.js',
+        singleRun: false
       }
     },
 
@@ -512,6 +516,12 @@ module.exports = function (grunt) {
     else grunt.task.run([
       'test:server',
       'test:client'
+    ]);
+  });
+
+  grunt.registerTask('autotest', function() {
+    grunt.task.run([
+      'karma:auto'
     ]);
   });
 
