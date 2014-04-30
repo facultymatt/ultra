@@ -1,8 +1,7 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
-@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 @import "variables";
-
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 
 // .timeline-modal {
 
@@ -239,6 +238,10 @@ circle {
 
 .tag.label {
   display: inline-block;
+}
+
+.x-out {
+  font-size: 20px;
 }
 
 

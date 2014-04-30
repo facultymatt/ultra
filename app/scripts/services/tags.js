@@ -43,7 +43,7 @@ angular.module('ultraApp')
         active: true
       }));
       return deferred.promise;
-    }
+    };
 
     // setup data
     // @note data will be manipulated before 

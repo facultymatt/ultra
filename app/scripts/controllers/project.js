@@ -22,7 +22,4 @@ angular.module('ultraApp')
   })
   .controller('ProjectCtrl', function($scope, $routeParams) {
     $scope.slug = $routeParams.slug;
-
-    console.log('Hello <<< ', $scope.slug);
-
   });

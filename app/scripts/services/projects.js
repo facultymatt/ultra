@@ -33,12 +33,13 @@ angular.module('ultraApp')
     // this means that changing an value will change it across the app
     // thus simulating "persisting" to a backend
     // although this doesn't quite happen since we are using defer
-    
+
     var projects = [];
 
     // groups items by year given array of items using _.groupBy()
     // BUT returns in a more usable format where 
     // year = year and items = array of projects for that year
+
     function groupItemsByYear(selectItems) {
       var grouped = _.groupBy(selectItems, 'year');
       return _.map(grouped, function(items, key) {
@@ -47,7 +48,7 @@ angular.module('ultraApp')
           items: items
         };
       });
-    };
+    }
 
     // mock async all call
     // starting with this pattern allows seamless transition to
@@ -63,9 +64,9 @@ angular.module('ultraApp')
     // gets range of years in project
     this.getTimeRange = function() {
       return _.unique(_.pluck(projects, 'year')).sort();
-    }
+    };
 
-     // get all projects grouped by year
+    // get all projects grouped by year
     this.groupByYear = function(unGrouped) {
       return groupItemsByYear(unGrouped);
     };
@@ -75,19 +76,19 @@ angular.module('ultraApp')
       var delay = $q.defer();
 
       // if no array is supplied send back all projects
-      if(tagArray === null || tagArray.length === 0) {
+      if (tagArray === null || tagArray.length === 0) {
         delay.resolve(projects);
         return delay.promise;
       }
 
       // ensure we have array
-      if(angular.isArray(tagArray) !== true) {
+      if (angular.isArray(tagArray) !== true) {
         tagArray = [tagArray];
       }
 
       // if user is passing object created with tag
       // class, for example new Tag(), then pluck the slugs
-      if(tagArray[0].constructor.name === 'Tag') {
+      if (tagArray[0].constructor.name === 'Tag') {
         tagArray = _.pluck(tagArray, 'slug');
       }
 
@@ -99,10 +100,10 @@ angular.module('ultraApp')
       // filter projects by tagArray
       var byTag = _.where(projects, function(project) {
         return _.find(project.tags, function(tag) {
-          return tagArray.indexOf(tag.slug) !== -1; 
+          return tagArray.indexOf(tag.slug) !== -1;
         });
       });
-      
+
       delay.resolve(byTag);
       return delay.promise;
     };
@@ -440,16 +441,16 @@ angular.module('ultraApp')
     }];
 
     (function setup() {
-      _.each(projects, function(project, i) {
+      _.each(projects, function(project) {
         _.each(project.tags, function(tag, i) {
           Tags.getOne(tag).then(function(response) {
-            project.tags[i] = response;  
+            project.tags[i] = response;
             // reverse association
-            if(response && response.projects) {
+            if (response && response.projects) {
               response.projects.push(project);
             }
           });
-        })
+        });
       });
     }());
 

@@ -22,8 +22,7 @@
 
         <div class="col-xs-3 select-history" ng-mouseleave="countDownToHide()">       
 
-            <!-- <small>Applied Tags</small><br />
-            <span class="tag label"
+           <!--  <span class="tag label"
                 ng-repeat="tag in activeTags" 
                 ng-click="tag.active = !tag.active"
                 ng-style="{'background-color' : tag.color}">
@@ -59,7 +58,7 @@
                         ng-click="tag.active = !tag.active"
                         ng-style="{'background-color' : tag.color}">
                         {{tag.name}}
-                        <span ng-show="tag.active"> &times;</span>
+                        <span class="x-out" ng-show="tag.active"> &times;</span>
                     </span>
                     </p>
                 </div>

@@ -30,7 +30,7 @@ angular.module('ultraApp')
       // where each object has key which is tag name
       // and array of values, where x = year and 
       // y = number of occurrences of this tag in this year
-      var returnData = _.map(tags, function(tag, key) {
+      var returnData = _.map(tags, function(tag) {
         var xAndYValues = _.map(years, function(year) {
           return {
             x: year,
@@ -49,8 +49,6 @@ angular.module('ultraApp')
 
 
     this.formatProjectsForTimeline = function() {
-
-      var returnData = [];
 
       _.each(items, function(project, i) {
         project.key = project.title;

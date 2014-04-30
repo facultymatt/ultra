@@ -57,7 +57,6 @@ describe('Service: Tags', function() {
     });
 
     it('should set baseColor on group', function() {
-      console.log(groups[0]);
       expect(groups[0].baseColor).toBeDefined();
     });
 

@@ -4,13 +4,16 @@
 // values for d3 charts
 
 angular.module('ultraApp')
-  .controller('MainCtrl', function($scope, $http, $location, $routeParams, $analytics, $timeout, Projects, Tags, Timeline, Tag) {
+  .controller('MainCtrl', function($scope, $http, $location, $routeParams, $analytics, $timeout, Projects, Tags, Timeline) {
 
     $scope.activeTags = [];
 
-    // tag filtering
+    // get initial tags if any
     $scope.activeTagsString = $routeParams.tags || '';
 
+    // parse tags on page load
+    // parse tags=one,two,three into array [one, two, three]
+    // then create tag objects, set them active
     if ($scope.activeTagsString !== '') {
       var tags = $scope.activeTagsString.split(',');
       _.each(tags, function(slug) {
@@ -20,16 +23,19 @@ angular.module('ultraApp')
       });
     }
 
-    $scope.$on('$locationChangeSuccess', function() {
-      console.log('$locationChangeSuccess');
-    });
-
+    // update browser url as user changes tags
     $scope.$watch('activeTagsString', function(newValue) {
       if (newValue !== '') {
         $location.search('tags', newValue);
       } else {
         $location.search({});
       }
+    });
+
+    // track get params as regular page views
+    // this lets us more easily see in analytics dashboard
+    $scope.$on('$locationChangeSuccess', function() {
+      $analytics.pageTrack($location.url());
     });
 
     // tag groups display at top of page 
@@ -67,7 +73,6 @@ angular.module('ultraApp')
     // changing a tags active property causes its setter to broadcast
     // so we can hook into that here and get a new active tags array
     $scope.$on('tags.active.update', function() {
-      console.log('someone set active tags');
       Tags.getActive().then(function(response) {
         $scope.activeTags = response;
         $scope.activeTagsString = _.pluck(response, 'slug').join(',');
@@ -89,7 +94,7 @@ angular.module('ultraApp')
 
     $scope.cancelTimeout = function() {
       $timeout.cancel(activeTimeout);
-    }
+    };
 
     $scope.countDownToHide = function() {
       activeTimeout = $timeout(function() {
@@ -123,7 +128,7 @@ angular.module('ultraApp')
 
     // tooltips that show when use how
     $scope.toolTipContentFunction = function() {
-      return function(key, x, y, e, graph) {
+      return function(key, x, y) {
         var string = '';
         string += '<h3>' + key + '</h3>';
         string += '<p>' + y + ' projects in ' + x + '</p>';
