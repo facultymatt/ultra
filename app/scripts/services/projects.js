@@ -28,7 +28,7 @@
 */
 
 angular.module('ultraApp')
-  .service('Projects', function Projects($q, Tags) {
+  .service('Projects', function Projects($q, Tags, Tag) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     // this means that changing an value will change it across the app
     // thus simulating "persisting" to a backend
@@ -88,13 +88,13 @@ angular.module('ultraApp')
 
       // if user is passing object created with tag
       // class, for example new Tag(), then pluck the slugs
-      if (tagArray[0].constructor.name === 'Tag') {
+      if (tagArray[0] instanceof Tag) {
         tagArray = _.pluck(tagArray, 'slug');
       }
 
       // ensure we have lowercase array
       tagArray = _.map(tagArray, function(tag) {
-        return tag.toLowerCase();
+        return tag.toLowerCase() || '';
       });
 
       // filter projects by tagArray
