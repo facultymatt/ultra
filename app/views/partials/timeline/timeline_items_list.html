@@ -1,34 +1,38 @@
 <div 
- class="select-history"
+ class="select-history row"
  ng-show="years.length > 0" 
  ng-repeat="year in years | orderBy:'year':true ">
 
-    <div class="a-block">
+    <div class="a-block a-year">
         <h4>{{year.year}}</h4>
     </div>
 
     <div 
-     class="a-block timeline-item" 
+     class="a-block timeline-item col-xs-12" 
      ng-class="{'being-filtered' : filterTerm != '', 'striped' : $even}" 
      ng-repeat="item in year.items"
      ng-click="setActiveProject(item)">
-        <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
 
-        <h5>{{item.title}}</h5>
+        <div class="row">
 
-        <span 
-         class="tiny-circle tag label" 
-         ng-repeat="tag in item.tags" 
-         ng-style="{'background-color': tag.color}">
-        </span>
+            <span class="col-xs-12">
+                <h5>{{item.title}}</h5>
+                <span 
+                 class="tiny-circle tag label" 
+                 ng-repeat="tag in item.tags" 
+                 ng-style="{'background-color': tag.color}">
+                    <span ng-show="activeItem == item">{{tag.name}}</span>
+                </span>
+            </span>
 
-        <p ng-show="activeItem == item" class="desc" ng-bind-html="item.desc"></p>
-        <!-- <p class="tags">
-            <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
-                {{tag}}
-                <span ng-if="!$last">,</span>
-            </em>
-        </p> -->
+            <p 
+             class="col-xs-6" 
+             ng-show="activeItem == item" 
+             class="desc" 
+             ng-bind-html="item.desc">
+            </p>
+
+        </div>
 
     </div>
 

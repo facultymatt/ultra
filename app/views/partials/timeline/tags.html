@@ -1,6 +1,7 @@
 <p ng-repeat="group in tagGroups">
     {{group.name}}
     <span class="tag label"
+        ng-class="{'tag-active' : tag.active, 'tag-not-active' : !tag.active}"
         ng-repeat="tag in group.tags" 
         ng-click="tag.active = !tag.active"
         ng-style="{'background-color' : tag.color}">

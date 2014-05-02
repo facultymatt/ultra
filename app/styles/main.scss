@@ -1,6 +1,7 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
 @import "variables";
+@import "tooltips";
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 
 
@@ -11,16 +12,14 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 .container-header {
   //background: rgb(255, 169, 0);
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid $gray-lighter;
+  background: lighten($gray-lighter, 2);
 }
 
 .row-tags {
   //background: $gray-lighter;
   padding: 10px 0;
-}
-
-.col-timeline {
-  padding: 0;
+  border-bottom: 1.2px solid $gray-lighter;
 }
 
 // typography
@@ -95,6 +94,18 @@ iframe {
   display: inline-block;
 }
 
+.tag-not-active {
+  margin-top: 8px;
+}
+
+.tag-active {
+
+}
+
+h5 {
+  display: inline-block;
+}
+
 // tags which are active
 .x-out {
   font-size: 20px;
@@ -102,12 +113,11 @@ iframe {
 
 // tags in blocks
 .tiny-circle {
-  width: 10px;
-  height: 10px;
+  min-width: 12px;
+  min-height: 12px;
   display: inline-block;
   // border-radius: 50%;
   margin-right: 2px;
-  padding: 0;
 }
 
 // ensure affixed items sit at top of parent element
@@ -130,4 +140,13 @@ iframe {
     margin: 0;
   }
 
+  p {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+
+}
+
+.a-year {
+  background: white;
 }

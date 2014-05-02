@@ -122,7 +122,8 @@ angular.module('ultraApp')
     // triggers the project "tooltip" to open
     $scope.setActiveProject = function(item) {
       //$timeout.cancel(activeTimeout);
-      $scope.activeItem = item;
+      if($scope.activeItem == item) $scope.activeItem = null;
+      else $scope.activeItem = item;
     };
 
     // var activeTimeout = null;
@@ -189,10 +190,13 @@ angular.module('ultraApp')
 
     // tooltips that show when use how
     $scope.toolTipContentFunction = function() {
-      return function(key, x, y) {
-        var string = '';
-        string += '<h3>' + key + '</h3>';
-        string += '<p>' + y + ' projects in ' + x + '</p>';
+      return function(key, x, y, i) {
+        var color = i.series.color;
+        var project = y === 0 || y >= 2 ? 'projects' : 'project';
+        var string = '<div style="background-color: '+color+';">';
+        string += '<p><em>' + key + '</em><br />';
+        string += '<i>' + y + ' ' + project + ' in ' + x + '<i></p>';
+        string += '</div><div class="arrow" style="border-top-color:'+color+';"></div>';
         return string;
       };
     };
