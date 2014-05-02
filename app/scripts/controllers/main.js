@@ -7,6 +7,14 @@ angular.module('ultraApp')
   .controller('MainCtrl', function($scope, $http, $location, $routeParams, $analytics, $timeout, Projects, Tags, Timeline) {
 
     $scope.activeTags = [];
+    $scope.donutTags = [];
+    $scope.totalYears = Projects.getTimeRange();
+    $scope.getWidthPercent = function() {
+      var width = 100/($scope.totalYears.length+1)+'%';
+      return {
+        'width': width
+      };
+    }
 
     // get initial tags if any
     $scope.activeTagsString = $routeParams.tags || '';
@@ -47,6 +55,13 @@ angular.module('ultraApp')
     // get all tags for showing on first load
     Tags.getAll().then(function(response) {
       $scope.allTags = response;
+      _.each(response, function(tag) {
+        $scope.donutTags.push({
+          name: tag.name,
+          y: tag.projects.length || 0,
+          color: tag.color
+        });
+      })
     });
 
     // watch active tags and either get by those tags or
@@ -58,14 +73,15 @@ angular.module('ultraApp')
       // if we have active tags, use them to generate the timeline
       // else we use all the tags
       if (newValue && newValue.length) {
-        $scope.exampleData = Timeline.formatProjectTagsForTimeline(newValue, Projects.getTimeRange());
+        $scope.timelineData = Timeline.formatProjectTagsForTimeline(newValue, Projects.getTimeRange());
       } else {
-        $scope.exampleData = Timeline.formatProjectTagsForTimeline($scope.allTags, Projects.getTimeRange());
+        $scope.timelineData = Timeline.formatProjectTagsForTimeline($scope.allTags, Projects.getTimeRange());
       }
 
       // update project listing
       Projects.getByTag(newValue).then(function(response) {
         $scope.years = Projects.groupByYear(response);
+        console.log(response);
       });
 
     });
@@ -79,6 +95,25 @@ angular.module('ultraApp')
       });
     });
 
+    $scope.$on('elementClick.directive', function(event, d) {
+
+      var eventTarget = event.targetScope.id,
+        tagName;
+
+      if (eventTarget === "pie") {
+        tagName = d.label;
+      } else if (eventTarget === "timeline") {
+        tagName = d.series.key;
+      }
+
+      if (tagName) {
+        Tags.getOne(tagName).then(function(response) {
+          response.active = !response.active;
+        });
+      }
+
+    });
+
 
     // ------------------------------
     // Tooltips
@@ -86,22 +121,22 @@ angular.module('ultraApp')
 
     // triggers the project "tooltip" to open
     $scope.setActiveProject = function(item) {
-      $timeout.cancel(activeTimeout);
+      //$timeout.cancel(activeTimeout);
       $scope.activeItem = item;
     };
 
-    var activeTimeout = null;
+    // var activeTimeout = null;
 
-    $scope.cancelTimeout = function() {
-      $timeout.cancel(activeTimeout);
-    };
+    // $scope.cancelTimeout = function() {
+    //   $timeout.cancel(activeTimeout);
+    // };
 
-    $scope.countDownToHide = function() {
-      activeTimeout = $timeout(function() {
-        $timeout.cancel(activeTimeout);
-        $scope.activeItem = null;
-      }, 1000);
-    };
+    // $scope.countDownToHide = function() {
+    //   activeTimeout = $timeout(function() {
+    //     $timeout.cancel(activeTimeout);
+    //     $scope.activeItem = null;
+    //   }, 1000);
+    // };
 
     // // ------------------------------
     // // Time line functions
@@ -109,7 +144,6 @@ angular.module('ultraApp')
 
     $scope.colorFunction = function() {
       return function(d) {
-        //console.log(d);
         return d.color;
       };
     };
@@ -125,6 +159,33 @@ angular.module('ultraApp')
         return d.y;
       };
     };
+
+    $scope.donutxFunction = function() {
+      return function(d) {
+        return d.name;
+      };
+    }
+    $scope.donutyFunction = function() {
+      return function(d) {
+        return d.y;
+      };
+    }
+
+    $scope.donutcolorFunction = function() {
+      return function(d) {
+        return d.data.color;
+      };
+    };
+
+    $scope.descriptionFunction = function() {
+      return function(d) {
+        return d.key;
+      }
+    }
+
+    $scope.donutColorFunction = function() {
+      return '#333';
+    }
 
     // tooltips that show when use how
     $scope.toolTipContentFunction = function() {

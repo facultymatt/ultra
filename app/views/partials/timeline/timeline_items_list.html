@@ -1,27 +1,32 @@
 <div ng-show="years.length > 0" ng-repeat="year in years | orderBy:'year':true ">
 
-    <h4>{{year.year}}</h4>
+    <div class="a-block">
+        <h4>{{year.year}}</h4>
+    </div>
 
-    <div class="timeline-item" ng-class="{'being-filtered' : filterTerm != ''}" ng-repeat="item in year.items">
+    <div 
+     class="a-block timeline-item" 
+     ng-class="{'being-filtered' : filterTerm != '', 'striped' : $even}" 
+     ng-repeat="item in year.items"
+     ng-click="setActiveProject(item)">
         <!-- <h5 ng-style="getColorForTag(item.tags[0])" ng-mouseenter="setActiveProject(item)">{{item.title}}</h5> -->
 
-        <h5 ng-mouseenter="setActiveProject(item)">{{item.title}}</h5>
+        <h5>{{item.title}}</h5>
 
         <span 
-         class="tiny-circle" 
+         class="tiny-circle tag label" 
          ng-repeat="tag in item.tags" 
          ng-style="{'background-color': tag.color}">
         </span>
 
-        <!-- <p class="desc" ng-bind-html="item.desc"></p> -->
+        <p ng-show="activeItem == item" class="desc" ng-bind-html="item.desc"></p>
         <!-- <p class="tags">
             <em class="small" ng-repeat="tag in item.tags" ng-style="getColorForTag(tag)">
                 {{tag}}
                 <span ng-if="!$last">,</span>
             </em>
         </p> -->
-    </div>
 
-    <hr ng-if="!$last" />
+    </div>
 
 </div>

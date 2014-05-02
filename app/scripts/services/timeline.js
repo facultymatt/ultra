@@ -15,6 +15,7 @@ angular.module('ultraApp')
     var items = [];
 
     // returns number or occurrences of single year in array of years 
+
     function countByYear(items, year) {
       var count = _.countBy(items, function(i) {
         return i === year;
@@ -48,17 +49,19 @@ angular.module('ultraApp')
     };
 
 
-    this.formatProjectsForTimeline = function() {
+    this.formatProjectsForTimeline = function(items) {
 
-      _.each(items, function(project, i) {
-        project.key = project.title;
-        project.values = [{
-          x: project.year,
-          y: i
-        }];
+      var mapped = _.map(items, function(project, i) {
+        return {
+          key: project.title,
+          values: [{
+            x: project.year,
+            y: i,
+          }]
+        }
       });
 
-      return items;
+      return mapped;
 
     };
 

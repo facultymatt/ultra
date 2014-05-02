@@ -16,60 +16,32 @@
 </div>
  -->
 
+
+
 <div class="row">
     
     <div class="col-xs-12">
-
-        <div class="col-xs-3 select-history" ng-mouseleave="countDownToHide()">       
-
-           <!--  <span class="tag label"
-                ng-repeat="tag in activeTags" 
+        <p ng-repeat="group in tagGroups">
+            {{group.name}}
+            <span class="tag label"
+                ng-repeat="tag in group.tags" 
                 ng-click="tag.active = !tag.active"
                 ng-style="{'background-color' : tag.color}">
                 {{tag.name}}
-                <span ng-show="tag.active"> &times;</span>
-            </span> -->
+                <span class="x-out" ng-show="tag.active"> &times;</span>
+            </span>
+        </p>
+    </div>
 
-            <!-- <div ng-include=" 'partials/timeline/tags_input.html' "></div> -->
+    <div class="col-xs-12">
+        <div ng-include=" 'partials/timeline/lines.html' "></div>
+    </div>
 
-            <div ng-include=" 'partials/timeline/timeline_items_list.html' "></div>
+    <div class="col-xs-12">
 
-            <div ng-include=" 'partials/timeline/timeline_no_items.html' "></div>
+        <div ng-include=" 'partials/timeline/timeline_items_list.html' "></div>
 
-        </div>
-
-        <div class="col-xs-8 affix col-xs-offset-3">
-            
-            <div class="row">
-                <div class="timeline-modal col-xs-4 affix" ng-show="activeItem" ng-mouseenter="cancelTimeout()" ng-mouseleave="countDownToHide()">
-                    <p ng-click="activeItem = null">&times;</p>
-                    <h2>{{activeItem.title}}</h2>
-                    <p ng-bind-html="activeItem.desc"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                
-                <div class="col-xs-12">
-                    <p ng-repeat="group in tagGroups">
-                    {{group.name}}
-                    <span class="tag label"
-                        ng-repeat="tag in group.tags" 
-                        ng-click="tag.active = !tag.active"
-                        ng-style="{'background-color' : tag.color}">
-                        {{tag.name}}
-                        <span class="x-out" ng-show="tag.active"> &times;</span>
-                    </span>
-                    </p>
-                </div>
-            
-                <div class="col-xs-12">
-                    <div ng-include=" 'partials/timeline/tags_chart.html' "></div>
-                </div>
-
-            </div>
-
-        </div>
+        <div ng-include=" 'partials/timeline/timeline_no_items.html' "></div>
 
     </div>
 
