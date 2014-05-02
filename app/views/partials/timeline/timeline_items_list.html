@@ -1,4 +1,7 @@
-<div ng-show="years.length > 0" ng-repeat="year in years | orderBy:'year':true ">
+<div 
+ class="select-history"
+ ng-show="years.length > 0" 
+ ng-repeat="year in years | orderBy:'year':true ">
 
     <div class="a-block">
         <h4>{{year.year}}</h4>
