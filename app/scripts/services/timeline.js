@@ -12,10 +12,7 @@
 angular.module('ultraApp')
   .service('Timeline', function Timeline() {
 
-    var items = [];
-
     // returns number or occurrences of single year in array of years 
-
     function countByYear(items, year) {
       var count = _.countBy(items, function(i) {
         return i === year;
@@ -58,7 +55,7 @@ angular.module('ultraApp')
             x: project.year,
             y: i,
           }]
-        }
+        };
       });
 
       return mapped;

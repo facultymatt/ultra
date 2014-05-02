@@ -24,7 +24,9 @@ angular.module('ultraApp')
 
         // if selector doesn't match any element, set back to null
         // this will cause directive to default to thePoint = 0
-        if (!theElem.length) theElem = null;
+        if (!theElem.length) {
+          theElem = null;
+        }
 
       }
 
@@ -73,7 +75,7 @@ angular.module('ultraApp')
           }
         }
         scope.$apply(); // @todo do we need this for real? 
-      }
+      };
 
 
       // Run once, just to set things up

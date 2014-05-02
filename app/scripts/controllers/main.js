@@ -10,11 +10,11 @@ angular.module('ultraApp')
     $scope.donutTags = [];
     $scope.totalYears = Projects.getTimeRange();
     $scope.getWidthPercent = function() {
-      var width = 100/($scope.totalYears.length+1)+'%';
+      var width = 100 / ($scope.totalYears.length + 1) + '%';
       return {
         'width': width
       };
-    }
+    };
 
     // get initial tags if any
     $scope.activeTagsString = $routeParams.tags || '';
@@ -61,7 +61,7 @@ angular.module('ultraApp')
           y: tag.projects.length || 0,
           color: tag.color
         });
-      })
+      });
     });
 
     // watch active tags and either get by those tags or
@@ -122,8 +122,11 @@ angular.module('ultraApp')
     // triggers the project "tooltip" to open
     $scope.setActiveProject = function(item) {
       //$timeout.cancel(activeTimeout);
-      if($scope.activeItem == item) $scope.activeItem = null;
-      else $scope.activeItem = item;
+      if ($scope.activeItem === item) {
+        $scope.activeItem = null;
+      } else {
+        $scope.activeItem = item;
+      }
     };
 
     // var activeTimeout = null;
@@ -165,12 +168,13 @@ angular.module('ultraApp')
       return function(d) {
         return d.name;
       };
-    }
+    };
+
     $scope.donutyFunction = function() {
       return function(d) {
         return d.y;
       };
-    }
+    };
 
     $scope.donutcolorFunction = function() {
       return function(d) {
@@ -181,22 +185,22 @@ angular.module('ultraApp')
     $scope.descriptionFunction = function() {
       return function(d) {
         return d.key;
-      }
-    }
+      };
+    };
 
     $scope.donutColorFunction = function() {
       return '#333';
-    }
+    };
 
     // tooltips that show when use how
     $scope.toolTipContentFunction = function() {
       return function(key, x, y, i) {
         var color = i.series.color;
         var project = y === 0 || y >= 2 ? 'projects' : 'project';
-        var string = '<div style="background-color: '+color+';">';
+        var string = '<div style="background-color: ' + color + ';">';
         string += '<p><em>' + key + '</em><br />';
         string += '<i>' + y + ' ' + project + ' in ' + x + '<i></p>';
-        string += '</div><div class="arrow" style="border-top-color:'+color+';"></div>';
+        string += '</div><div class="arrow" style="border-top-color:' + color + ';"></div>';
         return string;
       };
     };
