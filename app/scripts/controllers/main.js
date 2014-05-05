@@ -18,6 +18,7 @@ angular.module('ultraApp')
 
     // get initial tags if any
     $scope.activeTagsString = $routeParams.tags || '';
+    $scope.activeTagsFilter = $routeParams.filter || '';
 
     // parse tags on page load
     // parse tags=one,two,three into array [one, two, three]
@@ -32,12 +33,23 @@ angular.module('ultraApp')
     }
 
     // update browser url as user changes tags
-    $scope.$watch('activeTagsString', function(newValue) {
-      if (newValue !== '') {
-        $location.search('tags', newValue);
+    $scope.$watch('activeTagsString + activeTagsFilter', function() {
+      if ($scope.activeTagsString !== '') {
+        $location.search('tags', $scope.activeTagsString);
       } else {
+        $location.search('tags', '');
+      }
+
+      if ($scope.activeTagsFilter !== '') {
+        $location.search('filter', $scope.activeTagsFilter);
+      } else {
+        $location.search('filter', '');
+      }
+
+      if ($scope.activeTagsFilter === '' && $scope.activeTagsString === '') {
         $location.search({});
       }
+
     });
 
     // track get params as regular page views
@@ -80,6 +92,11 @@ angular.module('ultraApp')
 
       // update project listing
       Projects.getByTag(newValue).then(function(response) {
+
+        if ($scope.activeTagsFilter) {
+          response = Projects.filterFeatured(response);
+        }
+
         $scope.years = Projects.groupByYear(response);
         console.log(response);
       });

@@ -50,7 +50,7 @@ angular.module('ultraApp')
     // when app first runs. we slugify the name
     // and we convert the tag array into an array of objects. 
     categories = [{
-      name: "Core competency",
+      name: "Language",
       baseColorScheme: ["FFA900", 'FFCB00'],
       tags: ['openframeworks', 'javascript']
     }, {
@@ -58,9 +58,9 @@ angular.module('ultraApp')
       baseColorScheme: ["2D94CC", 'lightblue'],
       tags: ['angularjs', 'nodejs', 'jquery', 'html5', 'api', 'geolocation', 'mongodb', 'drupal', 'tdd', 'php']
     }, {
-      name: "Areas of Interest",
+      name: "Interest",
       baseColorScheme: ["57544F", 'lightgray'],
-      tags: ['presentation', 'demonstration', 'publication', 'website', 'exhibition', 'print', 'prototype', 'game', 'lego', 'apps']
+      tags: ['computer vision', 'prototype', 'website', 'app', 'exhibition', 'lego', 'teaching', 'presentation', 'demo', 'publication', 'print']
     }];
 
     // uses the colors array and tags

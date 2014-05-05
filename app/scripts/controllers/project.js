@@ -11,10 +11,10 @@ angular.module('ultraApp')
         templateUrl: 'partials/projects/rant_cloud.html',
         controller: 'ProjectCtrl'
       })
-      .when('/projects/lego-fabrication-shop', {
-        templateUrl: 'partials/projects/lego.html',
-        controller: 'ProjectCtrl'
-      })
+      // .when('/projects/lego-fabrication-shop', {
+      //   templateUrl: 'partials/projects/lego.html',
+      //   controller: 'ProjectCtrl'
+      // })
       .when('/projects/draw-me-a-story', {
         templateUrl: 'partials/projects/draw_me_a_story.html',
         controller: 'ProjectCtrl'

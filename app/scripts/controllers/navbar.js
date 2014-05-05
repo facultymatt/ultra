@@ -2,15 +2,20 @@
 
 angular.module('ultraApp')
   .controller('NavbarCtrl', function($scope, $location, Auth) {
+    // $scope.menu = [{
+    //   'title': 'Timeline',
+    //   'link': '/'
+    // }, {
+    //   'title': 'Projects',
+    //   'link': '/projects'
+    // }, {
+    //   'title': 'Bookshelf',
+    //   'link': '/bookshelf'
+    // }];
+
     $scope.menu = [{
       'title': 'Timeline',
       'link': '/'
-    }, {
-      'title': 'Projects',
-      'link': '/projects'
-    }, {
-      'title': 'Bookshelf',
-      'link': '/bookshelf'
     }];
 
     $scope.logout = function() {

@@ -27,6 +27,8 @@ angular.module('ultraApp')
         // create our "has many" relationship
         _.each(_this.tags, function(tagName, i) {
 
+          console.log(tagName);
+
           var tag = new Tag({
             active: false,
             name: tagName,
