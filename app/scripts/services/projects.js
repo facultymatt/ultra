@@ -125,14 +125,14 @@ angular.module('ultraApp')
       year: 2014,
       tags: ['openFrameworks'],
       title: "ofxAddons Collaborator",
-      desc: "Started helping to maintain ofxAddons and plan new features. Visit <a target='_blank' href='http://ofxaddons.com'> ofxAddons</a>"
+      desc: "Helped to maintain ofxAddons and plan new features. Visit <a target='_blank' href='http://ofxaddons.com'> ofxAddons</a>"
     }, {
       disabled: false,
       year: 2014,
       tags: ['javascript', 'computer vision'],
       title: "Blinky!!!",
       feature: true,
-      desc: "Blink detection using javascript and canvas only. Work in progress, view on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. Preview the <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>blinking sketch</a>. Try and <a target='_blank' href='http://127.0.0.1:9001'>demo Blinky!!!</a>"
+      desc: "Blink detection using javascript and canvas only. Work in progress, code available on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. Preview the <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>blinking sketch</a>. Try and <a target='_blank' href='http://127.0.0.1:9001'>demo Blinky!!!</a>"
     }, {
       disabled: false,
       year: 2014,
@@ -152,7 +152,7 @@ angular.module('ultraApp')
       year: 2014,
       tags: ['LEGO'],
       title: "Competed in LEGOLand Discovery Center's Brick Factor",
-      desc: "Competed in Brick Factor, a LEGO building competition and placed in the top ten. Event challenges LEGO masters to build around a central theme, using limited parts, in under 1 hour. Read more on <a target='_blank' href='http://www.boston.com/yourtown/2014/01/27/boston-lego-master-model-builder-crowned/EWuegEJ8241AYNtjdUwjuJ/pictures.html?pg=7#slide-7'>Boston.com</a> and <a target='_blank' href='http://www.bostonmagazine.com/arts-entertainment/blog/2014/01/27/legoland-discovery-center-boston-master-model-builder-competition/'>Boston Magazine</a>."
+      desc: "Competed in Brick Factor, a LEGO building competition and placed in the top ten. Event challenges LEGO masters to build around a central theme using limited parts in under 1 hour.  Read more on <a target='_blank' href='http://www.boston.com/yourtown/2014/01/27/boston-lego-master-model-builder-crowned/EWuegEJ8241AYNtjdUwjuJ/pictures.html?pg=7#slide-7'>Boston.com</a> and <a target='_blank' href='http://www.bostonmagazine.com/arts-entertainment/blog/2014/01/27/legoland-discovery-center-boston-master-model-builder-competition/'>Boston Magazine</a>."
     }, {
       disabled: false,
       year: 2014,
@@ -164,19 +164,19 @@ angular.module('ultraApp')
       year: 2014,
       tags: ['angularjs', 'javascript'],
       title: "AngularPad - Design PDF Documents Using HTML and CSS",
-      desc: "I find it much faster and more intuitive to layout pages using html and css instead of programs like inDesign. I built an app to do just this. It uses AngularJS and a markdown directive for layout. Then, pages are printed to PDF using a PhantomJS webserver. Code soon on Github."
+      desc: "I find it much faster and more intuitive to layout pages using html and css instead of programs like InDesign. I built an app to do just this which uses AngularJS and a markdown directive for layout. Pages are then printed to PDF using a PhantomJS webserver. Code will be available soon on Github."
     }, {
       disabled: false,
       year: 2014,
       tags: ['jquery', 'TDD', 'javascript'],
       title: "Big Picture, Small Window",
-      desc: "jQuery plugin for zooming into images and panning with your mouse. The interaction allows the user to explore a large image through a smaller window. Code on Github soon."
+      desc: "jQuery plugin for zooming into images and panning with your mouse. The interaction allows the user to explore a large image through a smaller window. Code will be available soon on Github."
     }, {
       disabled: false,
       year: 2013,
       tags: ['javascript', 'nodejs'],
       title: "NodeJS Email Module",
-      desc: "Easily send emails from your Mean.io app. Emails are formatted using html and css. Code on Github soon."
+      desc: "Easily send emails from your Mean.io app. Emails are formatted using html and css. Code will be available soon on Github."
     }, {
       disabled: false,
       year: 2013,
@@ -213,19 +213,19 @@ angular.module('ultraApp')
       year: 2013,
       tags: ['angularjs', 'javascript', 'mongodb'],
       title: "ngPages Module",
-      desc: "A module that makes it easy to design web pages with persistent content. View the project on <a target='_blank' href='https://github.com/facultymatt/mean-pages'>Github</a>. Inspired by Apostrophe's page and area concept."
+      desc: "A module that makes it easy to design web pages with persistent content. Code available on <a target='_blank' href='https://github.com/facultymatt/mean-pages'>Github</a>. Inspired by Apostrophe's page and area concept."
     }, {
       disabled: false,
       year: 2013,
       tags: ['TDD', 'angularjs', 'javascript'],
       title: "Unsaved Changed Directive",
-      desc: "AngularJS directives that prompt user to save their changes when navigating away from a page. View on <a target='_blank' href='https://github.com/facultymatt/angular-unsavedChanges'>Github</a>."
+      desc: "AngularJS directives that prompt user to save their changes when navigating away from a page. Code available on <a target='_blank' href='https://github.com/facultymatt/angular-unsavedChanges'>Github</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['angularjs', 'nodejs', 'javascript', 'mongodb'],
       title: "CrocktoberFest Voting App",
-      desc: "Prototyped simple voting app using FireBase to provide real-time backend. App allowed multiple judges to vote for multiple contestants. View on <a target='_blank' href='https://github.com/facultymatt/crocktoberfest'>Github</a>."
+      desc: "Prototyped simple voting app using FireBase to provide real-time backend. App allowed multiple judges to vote for multiple contestants. Code available on <a target='_blank' href='https://github.com/facultymatt/crocktoberfest'>Github</a>."
     }, {
       disabled: false,
       year: 2013,
