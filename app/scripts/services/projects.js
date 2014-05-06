@@ -124,40 +124,40 @@ angular.module('ultraApp')
       disabled: false,
       year: 2014,
       tags: ['openFrameworks'],
-      title: "ofxAddons co-maintainer",
-      desc: "Started helping to maintain ofxAddons and plan new features. <a target='_blank' href='http://ofxaddons.com'>visit ofxAddons</a>"
+      title: "ofxAddons Collaborator",
+      desc: "Started helping to maintain ofxAddons and plan new features. Visit <a target='_blank' href='http://ofxaddons.com'> ofxAddons</a>"
     }, {
       disabled: false,
       year: 2014,
       tags: ['javascript', 'computer vision'],
       title: "Blinky!!!",
       feature: true,
-      desc: "Blink detection using javascript and canvas only. Work in progress, view on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. See the blinking sketch <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>here</a>. Try and <a target='_blank' href='http://127.0.0.1:9001'>demo Blinky!!!</a>"
+      desc: "Blink detection using javascript and canvas only. Work in progress, view on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. Preview the <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>blinking sketch</a>. Try and <a target='_blank' href='http://127.0.0.1:9001'>demo Blinky!!!</a>"
     }, {
       disabled: false,
       year: 2014,
-      tags: ['openFrameworks'],
+      tags: ['openFrameworks', 'computer vision'],
       feature: true,
       title: "MIT Transform Table",
-      desc: "Developed software interface for MIT shape-shifting TRANSFORM table. Table was shown in Milan and sponsored by Lexus. View at <a target='_blank' href='http://tangible.media.mit.edu/project/transform/'>MIT Media Lab</a>. Featured on <a target='_blank' href='http://www.wired.com/2014/04/mit-whizzes-invent-magical-transforming-furniture/'>Wired</a> Watch on <a target='_blank' href='https://vimeo.com/91406395'>Vimeo</a>"
+      desc: "Developed software interface for MIT shape-shifting TRANSFORM table. Table was shown in Milan and sponsored by Lexus. View at <a target='_blank' href='http://tangible.media.mit.edu/project/transform/'>MIT Media Lab</a>. Featured on <a target='_blank' href='http://www.wired.com/2014/04/mit-whizzes-invent-magical-transforming-furniture/'>Wired</a>. Watch on <a target='_blank' href='https://vimeo.com/91406395'>Vimeo</a>."
     }, {
       disabled: false,
       year: 2014,
       tags: ['nodejs', 'angularjs', 'mongodb', 'javascript', 'website'],
       feature: true,
       title: "Personal Timeline",
-      desc: "An updated website to show my work over the years. Built using the Angular FullStack <a target='_blank' href='https://github.com/DaftMonk/generator-angular-fullstack'>Yeoman Generator</a>"
+      desc: "An updated website to show my work over the years. Built using a modern stack, including AngularJS, MongoDB, D3js, Grunt, Bower, and Yeoman."
     }, {
       disabled: false,
       year: 2014,
       tags: ['LEGO'],
       title: "Competed in LEGOLand Discovery Center's Brick Factor",
-      desc: "Competed in Brick Factor, a LEGO building competition and placed in the top ten. Event challenges LEGO masters to build around a central theme, using limited parts, in under 1 hour. Read more on <a target='_blank' href='http://www.boston.com/yourtown/2014/01/27/boston-lego-master-model-builder-crowned/EWuegEJ8241AYNtjdUwjuJ/pictures.html?pg=7#slide-7'>Boston.com</a> and <a target='_blank' href='http://www.bostonmagazine.com/arts-entertainment/blog/2014/01/27/legoland-discovery-center-boston-master-model-builder-competition/'>Boston Magazine</a>"
+      desc: "Competed in Brick Factor, a LEGO building competition and placed in the top ten. Event challenges LEGO masters to build around a central theme, using limited parts, in under 1 hour. Read more on <a target='_blank' href='http://www.boston.com/yourtown/2014/01/27/boston-lego-master-model-builder-crowned/EWuegEJ8241AYNtjdUwjuJ/pictures.html?pg=7#slide-7'>Boston.com</a> and <a target='_blank' href='http://www.bostonmagazine.com/arts-entertainment/blog/2014/01/27/legoland-discovery-center-boston-master-model-builder-competition/'>Boston Magazine</a>."
     }, {
       disabled: false,
       year: 2014,
       tags: ['TDD', 'angularjs', 'nodejs', 'javascript'],
-      title: "Developed Large-Scale, Test-Driven AngularJS APp",
+      title: "Developed Large-Scale, Test-Driven AngularJS App",
       desc: "Managed agile team to develop AngularJS app for large public corporation. The app was built to consume existing API and push services. Testing is done with Karma, Protractor, and SauceLabs. Code is private. Project will be released late 2014."
     }, {
       disabled: false,
@@ -189,25 +189,25 @@ angular.module('ultraApp')
       tags: ['api', 'angularjs', 'mongodb', 'nodejs', 'TDD', 'javascript', 'app'],
       feature: true,
       title: "LeaseRep, Powered by MarlinApps",
-      desc: "Worked with Marlin Leasing business finance company to bring to life a new vision for their quoting and application tools. Platform was developed using modern stack and agile process. Learn more at <a target='_blank' href='https://www.leaserep.com/welcome'>LeaseRep.com</a>"
+      desc: "Worked with Marlin Leasing business finance company to bring to life a new vision for their quoting and application tools. Platform was developed using modern stack and agile process. Learn more at <a target='_blank' href='https://www.leaserep.com/welcome'>LeaseRep.com</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['presentation', 'javascript', 'openFrameworks'],
       title: "Browser Based Art - An Opportunity For Artists",
-      desc: "Presentation at the Hacktory about the opportunities of javascript and the browser for artists. Discussed openFrameworks and openCV and new javascript/ canvas based approaches to openCV methods. View presentation on <a target='_blank' href='http://prezi.com/uzcbnccw2xxf/?utm_campaign=share&utm_medium=copy&rc=ex0share'>Prezzi</a>"
+      desc: "Presentation at the Hacktory about the opportunities of javascript and the browser for artists. Discussed openFrameworks and openCV and new javascript/ canvas based approaches to openCV methods. View presentation on <a target='_blank' href='http://prezi.com/uzcbnccw2xxf/?utm_campaign=share&utm_medium=copy&rc=ex0share'>Prezzi</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['website', 'jquery', 'nodejs', 'javascript'],
       title: "Personal Portfolio of Stockard Simon",
-      desc: "Developed website using Apostrophe CMS, a revolutionalty CMS built with NodeJS and MongoDB. Visit <a target='_blank' href='http://www.stockardsimon.com/'>stockardsimon.com</a> and learn more about <a target='_blank' href='http://demo2.apostrophenow.com/'>Apostrophe</a>"
+      desc: "Developed website using Apostrophe CMS, a revolutionalty CMS built with NodeJS and MongoDB. Visit <a target='_blank' href='http://www.stockardsimon.com/'>stockardsimon.com</a> and learn more about <a target='_blank' href='http://demo2.apostrophenow.com/'>Apostrophe</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['website', 'jquery', 'javascript'],
       title: "Fiore Design Wesbite",
-      desc: "Developed website for a local design company. Visit <a target='_blank' href='http://fioredesign.net/'>Fiore Design</a>"
+      desc: "Developed website for a local design company. Visit <a target='_blank' href='http://fioredesign.net/'>Fiore Design</a>."
     }, {
       disabled: false,
       year: 2013,
@@ -219,26 +219,26 @@ angular.module('ultraApp')
       year: 2013,
       tags: ['TDD', 'angularjs', 'javascript'],
       title: "Unsaved Changed Directive",
-      desc: "AngularJS directives that prompt user to save their changes when navigating away from a page. View on <a target='_blank' href='https://github.com/facultymatt/angular-unsavedChanges'>Github</a>"
+      desc: "AngularJS directives that prompt user to save their changes when navigating away from a page. View on <a target='_blank' href='https://github.com/facultymatt/angular-unsavedChanges'>Github</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['angularjs', 'nodejs', 'javascript', 'mongodb'],
       title: "CrocktoberFest Voting App",
-      desc: "Prototyped simple voting app using FireBase to provide real-time backend. App allowed multiple judges to vote for multiple contestants. View on <a target='_blank' href='https://github.com/facultymatt/crocktoberfest'>Github</a>"
+      desc: "Prototyped simple voting app using FireBase to provide real-time backend. App allowed multiple judges to vote for multiple contestants. View on <a target='_blank' href='https://github.com/facultymatt/crocktoberfest'>Github</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['api', 'php', 'website'],
       feature: true,
       title: "BizVizz: Corporate Accountability App",
-      desc: "User experience and API / web development to support this award winning app. Download from the appstore by visiting <a target='_blank' href='http://bizvizz.com/'>bizvizz.com</a>. Read press on <a target='_blank' href='http://www.phillygeekawards.com/previous-winners/'>Philly Geek Awards</a> and <a target='_blank' href='http://technical.ly/'>Technical.ly Philly</a>"
+      desc: "User experience and API / web development to support this award winning app. Download from the appstore by visiting <a target='_blank' href='http://bizvizz.com/'>bizvizz.com</a>. Read press on <a target='_blank' href='http://www.phillygeekawards.com/previous-winners/'>Philly Geek Awards</a> and <a target='_blank' href='http://technical.ly/'>Technical.ly Philly</a>."
     }, {
       disabled: false,
       year: 2013,
       tags: ['html5', 'javascript', 'game'],
       title: "Town of Songs 2013",
-      desc: "Developed HTML5 interactive for the band Edward Sharpe and the Magnetic Zeros with touch screen support. Visit <a target='_blank' href='http://townofsongs.com/'>Town Of Songs</a>"
+      desc: "Developed HTML5 interactive for the band Edward Sharpe and the Magnetic Zeros with touch screen support. Visit <a target='_blank' href='http://townofsongs.com/'>Town Of Songs</a>."
     }, {
       disabled: false,
       year: 2012,
@@ -246,7 +246,7 @@ angular.module('ultraApp')
       tags: ['jquery', 'php', 'javascript', 'website'],
       // website, template, plugins,
       title: "BDDW",
-      desc: "Developed bespoke website for bespoke furniture company. Custom admin interface was developed for managing products. Visit <a target='_blank' href='http://bddw.com/'>BDDW</a>"
+      desc: "Developed bespoke website for bespoke furniture company. Custom admin interface was developed for managing products. Visit <a target='_blank' href='http://bddw.com/'>BDDW</a>."
     }, {
       disabled: false,
       year: 2012,
@@ -259,14 +259,14 @@ angular.module('ultraApp')
       year: 2012,
       tags: ['api', 'nodejs', 'jquery', 'javascript'],
       title: "My Favorite Meme",
-      desc: "Real-time instagram API app that let users contribute their favorite meme. Process on <a target='_blank' href='http://instagram.com/p/RbkiRrtY8-/'>Instagram</a>"
+      desc: "Real-time instagram API app that let users contribute their favorite meme. Process on <a target='_blank' href='http://instagram.com/p/RbkiRrtY8-/'>Instagram</a>."
     }, {
       disabled: false,
       year: 2012,
       tags: ['api', 'game', 'angularjs', 'javascript'],
       //, 'realtime', 'app', 'develop'
       title: "Poasty App",
-      desc: "Develop realtime, instagram-like API for sharing photos and posts in schools. Learn more at <a target='_blank' href='http://www.poastyapp.com/welcome'>PoastyApp</a>"
+      desc: "Develop realtime, instagram-like API for sharing photos and posts in schools. Learn more at <a target='_blank' href='http://www.poastyapp.com/welcome'>PoastyApp</a>."
     }, {
       disabled: false,
       year: 2012,
@@ -286,7 +286,7 @@ angular.module('ultraApp')
       tags: ['php', 'jquery', 'javascript', 'website'],
       // 'platform', 'scale', 'cloud', 'php', 'develop'
       title: "Blank You Very Much",
-      desc: "Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. <a target='_blank' href='http://www.blankyouverymuch.com'>blankyouverymuch.com</a>"
+      desc: "Co-developed crowd-sourced design platform for client. Over 2.5 million page views in 2013, 6000+ daily page views, 32,000+ users, 3 million points awarded. Visit at <a target='_blank' href='http://www.blankyouverymuch.com'>blankyouverymuch.com</a>."
     }, {
       disabled: false,
       year: 2011,
@@ -297,16 +297,16 @@ angular.module('ultraApp')
     }, {
       disabled: false,
       year: 2011,
-      tags: ['demonstration', 'exhibition', 'openFrameworks'],
+      tags: ['demonstration', 'exhibition', 'openFrameworks', 'computer vision'],
       title: "PIXEL at the Test Zone - The Tech Virtual, San Jose, CA",
-      desc: "Presented exhibit installation with colleague at museum. View the exhibit on <a target='_blank' href='http://thetechopensource.thetech.org/requests/tech-test-zone-2011'>Tech Virtual</a>. Read press on <a target='_blank' href='http://www.cnet.com/pictures/future-tech-exhibit-plugs-museum-interactivity-photos/7/'>CNET</a>"
+      desc: "Presented exhibit installation with colleague at museum. View the exhibit on <a target='_blank' href='http://thetechopensource.thetech.org/requests/tech-test-zone-2011'>Tech Virtual</a>. Read press on <a target='_blank' href='http://www.cnet.com/pictures/future-tech-exhibit-plugs-museum-interactivity-photos/7/'>CNET</a>."
     }, {
       disabled: false,
       year: 2011,
       tags: ['website', 'php', 'jquery', 'javascript'],
       //  'design', 'develop'
       title: "mmWorks (personal website from 2010-2014)",
-      desc: "My personal website for a few years <a target='_blank' href='http://mmworks.mattmillerart.com/'>mmWorks</a>"
+      desc: "My personal website for a few years. Visit at <a target='_blank' href='http://mmworks.mattmillerart.com/'>mmWorks</a>."
     }, {
       disabled: false,
       year: 2011,
@@ -324,7 +324,7 @@ angular.module('ultraApp')
       year: 2011,
       tags: ['LEGO', 'publication', 'print'],
       title: "Build Play Learn - Masters of Industrial Design Thesis",
-      desc: "How can we cultivate thinkering and systematic creativity in children in a digital world? Read the <a target='_blank' href='http://issuu.com/mid_uarts/docs/buildplaylearn'>documentation</a>"
+      desc: "How can we cultivate thinkering and systematic creativity in children in a digital world? Read the <a target='_blank' href='http://issuu.com/mid_uarts/docs/buildplaylearn'>documentation</a>."
     }, {
       disabled: false,
       year: 2011,
@@ -338,11 +338,11 @@ angular.module('ultraApp')
       feature: true,
       // 'teaching', 'event', 'collaboration'
       title: "Started Gadgets and Kinetics Class For Children Ages 8-10 Years Old",
-      desc: "A Collaboration with Fleisher Art Memorial, MID@UArts, The Hacktory, and colleague Jake Wells. We started an after school class where children learned to use real tools to take apart common household appliances. Students then built new creations with the parts. We developed projects and curriculum to cultivate systematic creativity. <a target='_blank' href='http://gadgetsandkinetics.tumblr.com/'>Lean More</a>. Example lesson <a target='_blank' href='http://issuu.com/mid_uarts/docs/buildplaylearn/76'>here.</a>"
+      desc: "A Collaboration with Fleisher Art Memorial, MID@UArts, The Hacktory, and colleague Jake Wells. We started an after school class where children learned to use real tools to take apart common household appliances. Students then built new creations with the parts. We developed projects and curriculum to cultivate systematic creativity. <a target='_blank' href='http://gadgetsandkinetics.tumblr.com/'>Lean More</a>. Example lesson <a target='_blank' href='http://issuu.com/mid_uarts/docs/buildplaylearn/76'>here</a>."
     }, {
       disabled: false,
       year: 2011,
-      tags: ['openFrameworks', 'prototype'],
+      tags: ['openFrameworks', 'prototype', 'computer vision'],
       feature: true,
       title: "PIXEL",
       desc: "PIXEL connects people through their eyes. Peer into the PIXEL and invite others to experience what you see. The PIXEL exposes exactly what you are looking at by tracking your eye movements. Tethering multiple PIXELs together creates a personal and intimate visual connection. Learn more at <a target='_blank' href='http://lookintopixel.com/'>lookintopixel.com</a> and <a target='_blank' href='http://mmworks.mattmillerart.com/work/pixel/'>project page</a>. View <a href='http://mmworks.mattmillerart.com/labs/eyeaware/images/process-map.jpg'>visual</a>"
@@ -351,7 +351,7 @@ angular.module('ultraApp')
       year: 2011,
       tags: ['LEGO'],
       title: "LEGO Workshop",
-      desc: "I recreated the fabrication shop from the Industrial Design Department at the University of the Arts (where I did my graduate studies) using the LEGO digital designer program. <a target='_blank' href='/projects/lego-fabrication-shop'>Explore the workshop</a>"
+      desc: "I recreated the fabrication shop from the Industrial Design Department at the University of the Arts (where I did my graduate studies) using the LEGO digital designer program. Explore the <a target='_blank' href='/projects/lego-fabrication-shop'>workshop</a>"
     }, {
       disabled: false,
       year: 2010,
@@ -397,7 +397,7 @@ angular.module('ultraApp')
       tags: ['website', 'drupal', 'php', 'jquery', 'javascript'],
       // 'design', 'develop', 
       title: "MID@Uarts Website",
-      desc: "Developed website for graduate program. Visit <a target='_blank' href='http://mid.uarts.edu/'>site</a>"
+      desc: "Developed website for graduate program. Visit <a target='_blank' href='http://mid.uarts.edu/'>mid.uarts.edu</a>."
     }, {
       disabled: false,
       year: 2009,
@@ -430,7 +430,7 @@ angular.module('ultraApp')
       year: 2008,
       tags: ['website', 'drupal', 'php', 'jquery', 'javascript'],
       title: "ResourceLA site",
-      desc: "Website for Los Angelus based talent agency. Collaboration with Cheng+Snyder. Visit <a target='_blank' href='http://resourcela.com/'>ResourceLA</a>"
+      desc: "Website for Los Angelus based talent agency. Collaboration with Cheng+Snyder. Visit <a target='_blank' href='http://resourcela.com/'>ResourceLA</a>."
     }, {
       disabled: false,
       year: 2008,

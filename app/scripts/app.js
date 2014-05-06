@@ -9,8 +9,7 @@ angular.module('ultraApp', [
   'ui.bootstrap',
   'nvd3ChartDirectives',
   'angulartics',
-  'angulartics.google.analytics',
-  'bootstrap-tagsinput'
+  'angulartics.google.analytics'
 ])
   .config(function($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

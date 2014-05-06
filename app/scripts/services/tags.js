@@ -60,7 +60,7 @@ angular.module('ultraApp')
     }, {
       name: "Interest",
       baseColorScheme: ["57544F", 'lightgray'],
-      tags: ['computer vision', 'prototype', 'website', 'app', 'exhibition', 'lego', 'teaching', 'presentation', 'demo', 'publication', 'print']
+      tags: ['website', 'computer vision', 'prototype', 'app', 'exhibition', 'lego', 'game', 'teaching', 'presentation', 'demo', 'publication', 'print']
     }];
 
     // uses the colors array and tags

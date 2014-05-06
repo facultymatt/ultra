@@ -3,7 +3,7 @@
     <span class="tag label"
         ng-class="{'tag-active' : tag.active, 'tag-not-active' : !tag.active}"
         ng-repeat="tag in group.tags" 
-        ng-click="tag.active = !tag.active"
+        ng-click="tag.toggleActive()"
         ng-style="{'background-color' : tag.color}">
         {{tag.name}}
         <span class="x-out" ng-show="tag.active"> &times;</span>

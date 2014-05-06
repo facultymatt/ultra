@@ -38,8 +38,15 @@ angular.module('ultraApp')
           }
         });
 
+        
+
         return _this;
       }
+
+      Tag.prototype.toggleActive = function() {
+          var _this = this;
+          _this.active = !_this.active;
+        };
 
       return Tag;
     };

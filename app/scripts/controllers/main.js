@@ -52,12 +52,6 @@ angular.module('ultraApp')
 
     });
 
-    // track get params as regular page views
-    // this lets us more easily see in analytics dashboard
-    $scope.$on('$locationChangeSuccess', function() {
-      $analytics.pageTrack($location.url());
-    });
-
     // tag groups display at top of page 
     // and let user click them to activate and deactivate
     Tags.getGroups().then(function(response) {
@@ -98,10 +92,10 @@ angular.module('ultraApp')
         }
 
         $scope.years = Projects.groupByYear(response);
-        console.log(response);
       });
 
     });
+
 
     // changing a tags active property causes its setter to broadcast
     // so we can hook into that here and get a new active tags array
@@ -138,10 +132,11 @@ angular.module('ultraApp')
 
     // triggers the project "tooltip" to open
     $scope.setActiveProject = function(item) {
-      //$timeout.cancel(activeTimeout);
       if ($scope.activeItem === item) {
+        $analytics.pageTrack('/details?project=' + item.title + '&action=close');
         $scope.activeItem = null;
       } else {
+        $analytics.pageTrack('/details?project=' + item.title + '&action=open');
         $scope.activeItem = item;
       }
     };
