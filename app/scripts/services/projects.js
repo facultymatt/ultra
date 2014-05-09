@@ -132,7 +132,7 @@ angular.module('ultraApp')
       tags: ['javascript', 'computer vision'],
       title: "Blinky!!!",
       feature: true,
-      desc: "Blink detection using javascript and canvas only. Work in progress, code available on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. Preview the <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>blinking sketch</a>. Try and <a target='_blank' href='http://127.0.0.1:9001'>demo Blinky!!!</a>"
+      desc: "Blink detection using javascript and canvas only. Work in progress, code available on <a target='_blank' href='https://github.com/facultymatt/tracking.js/tree/features/track-blink'>Github</a>. Addon for tracking.js library. Follow progress on <a target='_blank' href='https://trello.com/b/3ZQiDFcC/blinky'>Trello</a>. Preview the <a target='_blank' href='http://codepen.io/facultymatt/pen/ldvhG'>blinking sketch</a>. Try and <a target='_blank' href='http://blinkyyy.herokuapp.com/'>demo Blinky!!!</a>"
     }, {
       disabled: false,
       year: 2014,
